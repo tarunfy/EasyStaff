@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="h-screen from-primary-1000 via-primary-700 to-primary-1100 animate-gradient-x bg-gradient-to-br w-full flex justify-center flex-col items-center">
+    <div className="h-screen from-primary-1000 via-primary-700 to-primary-1100  bg-gradient-to-br w-full flex justify-center flex-col items-center">
       <h1
         className="text-white text-center leading-none -mt-5"
         id="hero-heading"
