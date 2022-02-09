@@ -7,9 +7,6 @@ module.exports = {
       boxShadow: {
         'custom': 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
       },
-      fontFamily: {
-        'Ubuntu' : ['Ubuntu']
-      },
       colors: {
           "primary": {
             "50": "#f5f6ff",
@@ -21,7 +18,9 @@ module.exports = {
             "600": "#323be1",
             "700": "#2932bc",
             "800": "#212896",
-            "900": "#1b207b"
+            "900": "#1b207b",
+            "1000": "#0B1121",
+            "1100":"#0C243A"
         },
           "secondary": {
             "50": "#f4f5f6",
@@ -46,8 +45,24 @@ module.exports = {
             "700": "#b7b8b9",
             "800": "#929394",
             "900": "#787879"
+            
         }
-      }
+      },
+      animation: {
+        'gradient-x':'gradient-x 6s ease-in-out infinite',
+      },
+      keyframes: {
+        'gradient-x': {
+          '0%, 100%': {
+              'background-size':'200% 200%',
+              'background-position': 'left center'
+          },
+          '50%': {
+              'background-size':'200% 200%',
+              'background-position': 'right center'
+          }
+      },
+      },
     },
   },
   plugins: [],

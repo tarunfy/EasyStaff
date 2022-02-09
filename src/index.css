@@ -2,4 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap");
+@font-face {
+  font-family: "IntegralCF";
+  src: url(./assets/fonts/IntegralCF-Heavy.otf);
+}
+
+@font-face {
+  font-family: "SofiaPro";
+  src: url(./assets/fonts/Sofia\ Pro\ Bold\.otf);
+}
+
+#hero-heading {
+  font-family: "IntegralCF";
+  font-size: 6.5rem;
+}
+
+#hero-sub-heading {
+  font-family: "SofiaPro";
+  font-size: 1.3rem;
+}
+
+#cta-btn {
+  font-family: "SofiaPro";
+}
