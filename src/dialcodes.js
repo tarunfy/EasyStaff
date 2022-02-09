@@ -1,10 +1,6 @@
 export const obj ={
     "countries": [
       {
-        "code": "+7 840",
-        "name": "Abkhazia"
-      },
-      {
         "code": "+93",
         "name": "Afghanistan"
       },
@@ -17,24 +13,12 @@ export const obj ={
         "name": "Algeria"
       },
       {
-        "code": "+1 684",
-        "name": "American Samoa"
-      },
-      {
         "code": "+376",
         "name": "Andorra"
       },
       {
         "code": "+244",
         "name": "Angola"
-      },
-      {
-        "code": "+1 264",
-        "name": "Anguilla"
-      },
-      {
-        "code": "+1 268",
-        "name": "Antigua and Barbuda"
       },
       {
         "code": "+54",
@@ -55,10 +39,6 @@ export const obj ={
       {
         "code": "+61",
         "name": "Australia"
-      },
-      {
-        "code": "+672",
-        "name": "Australian External Territories"
       },
       {
         "code": "+43",
@@ -117,10 +97,6 @@ export const obj ={
         "name": "Bolivia"
       },
       {
-        "code": "+387",
-        "name": "Bosnia and Herzegovina"
-      },
-      {
         "code": "+267",
         "name": "Botswana"
       },
@@ -129,24 +105,12 @@ export const obj ={
         "name": "Brazil"
       },
       {
-        "code": "+246",
-        "name": "British Indian Ocean Territory"
-      },
-      {
-        "code": "+1 284",
-        "name": "British Virgin Islands"
-      },
-      {
         "code": "+673",
         "name": "Brunei"
       },
       {
         "code": "+359",
         "name": "Bulgaria"
-      },
-      {
-        "code": "+226",
-        "name": "Burkina Faso"
       },
       {
         "code": "+257",
@@ -165,18 +129,6 @@ export const obj ={
         "name": "Canada"
       },
       {
-        "code": "+238",
-        "name": "Cape Verde"
-      },
-      {
-        "code": "+ 345",
-        "name": "Cayman Islands"
-      },
-      {
-        "code": "+236",
-        "name": "Central African Republic"
-      },
-      {
         "code": "+235",
         "name": "Chad"
       },
@@ -189,14 +141,6 @@ export const obj ={
         "name": "China"
       },
       {
-        "code": "+61",
-        "name": "Christmas Island"
-      },
-      {
-        "code": "+61",
-        "name": "Cocos-Keeling Islands"
-      },
-      {
         "code": "+57",
         "name": "Colombia"
       },
@@ -207,18 +151,6 @@ export const obj ={
       {
         "code": "+242",
         "name": "Congo"
-      },
-      {
-        "code": "+243",
-        "name": "Congo, Dem. Rep. of (Zaire)"
-      },
-      {
-        "code": "+682",
-        "name": "Cook Islands"
-      },
-      {
-        "code": "+506",
-        "name": "Costa Rica"
       },
       {
         "code": "+385",
@@ -237,36 +169,12 @@ export const obj ={
         "name": "Cyprus"
       },
       {
-        "code": "+420",
-        "name": "Czech Republic"
-      },
-      {
         "code": "+45",
         "name": "Denmark"
       },
       {
-        "code": "+246",
-        "name": "Diego Garcia"
-      },
-      {
         "code": "+253",
         "name": "Djibouti"
-      },
-      {
-        "code": "+1 767",
-        "name": "Dominica"
-      },
-      {
-        "code": "+1 809",
-        "name": "Dominican Republic"
-      },
-      {
-        "code": "+670",
-        "name": "East Timor"
-      },
-      {
-        "code": "+56",
-        "name": "Easter Island"
       },
       {
         "code": "+593",
@@ -275,14 +183,6 @@ export const obj ={
       {
         "code": "+20",
         "name": "Egypt"
-      },
-      {
-        "code": "+503",
-        "name": "El Salvador"
-      },
-      {
-        "code": "+240",
-        "name": "Equatorial Guinea"
       },
       {
         "code": "+291",
@@ -297,14 +197,6 @@ export const obj ={
         "name": "Ethiopia"
       },
       {
-        "code": "+500",
-        "name": "Falkland Islands"
-      },
-      {
-        "code": "+298",
-        "name": "Faroe Islands"
-      },
-      {
         "code": "+679",
         "name": "Fiji"
       },
@@ -315,18 +207,6 @@ export const obj ={
       {
         "code": "+33",
         "name": "France"
-      },
-      {
-        "code": "+596",
-        "name": "French Antilles"
-      },
-      {
-        "code": "+594",
-        "name": "French Guiana"
-      },
-      {
-        "code": "+689",
-        "name": "French Polynesia"
       },
       {
         "code": "+241",
@@ -381,10 +261,6 @@ export const obj ={
         "name": "Guinea"
       },
       {
-        "code": "+245",
-        "name": "Guinea-Bissau"
-      },
-      {
         "code": "+595",
         "name": "Guyana"
       },
@@ -395,10 +271,6 @@ export const obj ={
       {
         "code": "+504",
         "name": "Honduras"
-      },
-      {
-        "code": "+852",
-        "name": "Hong Kong SAR China"
       },
       {
         "code": "+36",
@@ -435,10 +307,6 @@ export const obj ={
       {
         "code": "+39",
         "name": "Italy"
-      },
-      {
-        "code": "+225",
-        "name": "Ivory Coast"
       },
       {
         "code": "+1 876",
@@ -497,20 +365,12 @@ export const obj ={
         "name": "Libya"
       },
       {
-        "code": "+423",
-        "name": "Liechtenstein"
-      },
-      {
         "code": "+370",
         "name": "Lithuania"
       },
       {
         "code": "+352",
         "name": "Luxembourg"
-      },
-      {
-        "code": "+853",
-        "name": "Macau SAR China"
       },
       {
         "code": "+389",
@@ -541,10 +401,6 @@ export const obj ={
         "name": "Malta"
       },
       {
-        "code": "+692",
-        "name": "Marshall Islands"
-      },
-      {
         "code": "+596",
         "name": "Martinique"
       },
@@ -567,10 +423,6 @@ export const obj ={
       {
         "code": "+691",
         "name": "Micronesia"
-      },
-      {
-        "code": "+1 808",
-        "name": "Midway Island"
       },
       {
         "code": "+373",
@@ -617,16 +469,8 @@ export const obj ={
         "name": "Netherlands"
       },
       {
-        "code": "+599",
-        "name": "Netherlands Antilles"
-      },
-      {
         "code": "+1 869",
         "name": "Nevis"
-      },
-      {
-        "code": "+687",
-        "name": "New Caledonia"
       },
       {
         "code": "+64",
@@ -649,18 +493,6 @@ export const obj ={
         "name": "Niue"
       },
       {
-        "code": "+672",
-        "name": "Norfolk Island"
-      },
-      {
-        "code": "+850",
-        "name": "North Korea"
-      },
-      {
-        "code": "+1 670",
-        "name": "Northern Mariana Islands"
-      },
-      {
         "code": "+47",
         "name": "Norway"
       },
@@ -677,16 +509,8 @@ export const obj ={
         "name": "Palau"
       },
       {
-        "code": "+970",
-        "name": "Palestinian Territory"
-      },
-      {
         "code": "+507",
         "name": "Panama"
-      },
-      {
-        "code": "+675",
-        "name": "Papua New Guinea"
       },
       {
         "code": "+595",
@@ -707,10 +531,6 @@ export const obj ={
       {
         "code": "+351",
         "name": "Portugal"
-      },
-      {
-        "code": "+1 787",
-        "name": "Puerto Rico"
       },
       {
         "code": "+974",
@@ -757,10 +577,6 @@ export const obj ={
         "name": "Seychelles"
       },
       {
-        "code": "+232",
-        "name": "Sierra Leone"
-      },
-      {
         "code": "+65",
         "name": "Singapore"
       },
@@ -773,28 +589,8 @@ export const obj ={
         "name": "Slovenia"
       },
       {
-        "code": "+677",
-        "name": "Solomon Islands"
-      },
-      {
-        "code": "+27",
-        "name": "South Africa"
-      },
-      {
-        "code": "+500",
-        "name": "South Georgia and the South Sandwich Islands"
-      },
-      {
-        "code": "+82",
-        "name": "South Korea"
-      },
-      {
         "code": "+34",
         "name": "Spain"
-      },
-      {
-        "code": "+94",
-        "name": "Sri Lanka"
       },
       {
         "code": "+249",
@@ -837,10 +633,6 @@ export const obj ={
         "name": "Thailand"
       },
       {
-        "code": "+670",
-        "name": "Timor Leste"
-      },
-      {
         "code": "+228",
         "name": "Togo"
       },
@@ -851,10 +643,6 @@ export const obj ={
       {
         "code": "+676",
         "name": "Tonga"
-      },
-      {
-        "code": "+1 868",
-        "name": "Trinidad and Tobago"
       },
       {
         "code": "+216",
@@ -869,16 +657,8 @@ export const obj ={
         "name": "Turkmenistan"
       },
       {
-        "code": "+1 649",
-        "name": "Turks and Caicos Islands"
-      },
-      {
         "code": "+688",
         "name": "Tuvalu"
-      },
-      {
-        "code": "+1 340",
-        "name": "U.S. Virgin Islands"
       },
       {
         "code": "+256",
@@ -887,10 +667,6 @@ export const obj ={
       {
         "code": "+380",
         "name": "Ukraine"
-      },
-      {
-        "code": "+971",
-        "name": "United Arab Emirates"
       },
       {
         "code": "+44",
@@ -919,14 +695,6 @@ export const obj ={
       {
         "code": "+84",
         "name": "Vietnam"
-      },
-      {
-        "code": "+1 808",
-        "name": "Wake Island"
-      },
-      {
-        "code": "+681",
-        "name": "Wallis and Futuna"
       },
       {
         "code": "+967",
