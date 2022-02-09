@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import svg from "../assets/images/login.svg";
 import { Link } from "react-router-dom";
 
 const Verify = () => {
+  const [counter, setCounter] = useState(30);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    return () => clearInterval(timer);
+  }, [counter]);
 
   return (
     <div className="flex justify-around items-center bg-slate-100  bg-gradient-to-br h-screen w-full">
@@ -38,9 +46,13 @@ const Verify = () => {
         </form>
         <p className="mt-5 font-sans text-lg">
           Didn't recieve OTP?
-          <button className="ml-3 font-semibold text-primary-500">
-            Resend
-          </button>
+          {counter === 0 ? (
+            <button className="ml-3 font-semibold text-primary-500">
+              Resend
+            </button>
+          ) : (
+            <span className="ml-2 font-bold">00:{counter}</span>
+          )}
         </p>
       </div>
       <img src={svg} alt="img" className="h-128 w-128" />
