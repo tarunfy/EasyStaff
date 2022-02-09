@@ -20,7 +20,7 @@ const Home = () => {
       </p>
       <Link
         to="/login"
-        className="uppercase hover:bg-white hover:text-primary-700 hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all mt-5 text-2xl border-2 border-white text-white px-6 py-3"
+        className="uppercase hover:bg-white  hover:text-primary-700 hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all mt-5 text-2xl border-2 border-white text-white px-6 py-3"
         id="cta-btn"
       >
         Start Tracking
