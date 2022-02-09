@@ -1,14 +1,9 @@
 import React from "react";
 import svg from "../assets/images/login.svg";
-import { obj } from "../dialcodes.js";
-import { Redirect } from "react-router-dom";
 
-const Login = () => {
+const Verify = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTimeout(() => {
-      <Redirect to="/verify" />;
-    }, 3000);
   };
 
   return (
@@ -17,27 +12,17 @@ const Login = () => {
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop
         </h1>
-        <h1 className="text-tertiary-900 text-2xl">
-          Enter your mobile number to continue
+        <h1 className="text-tertiary-900 text-xl">
+          OTP has been sent to your mobile phone
         </h1>
         <form onSubmit={handleSubmit} className="mt-5">
           <div>
-            <select
-              name="dailCode"
-              id="dial-code"
-              required
-              className="py-2 px-1 font-bold text-lg mr-2 focus:outline-none"
-            >
-              {obj.countries.map((country) => (
-                <option value={country.code} key={country.name}>
-                  {country.name}
-                </option>
-              ))}
-            </select>
             <input
               type="number"
               required
-              className="py-3 px-1 font-bold text-lg border-2 border-gray"
+              id="partitioned"
+              className="p-4"
+              placeholder="OTP"
             />
           </div>
           <button
@@ -47,10 +32,16 @@ const Login = () => {
             Continue
           </button>
         </form>
+        <p className="mt-5 font-sans text-lg">
+          Didn't recieve OTP?
+          <button className="ml-3 font-semibold text-primary-500">
+            Resend
+          </button>
+        </p>
       </div>
       <img src={svg} alt="img" className="h-128 w-128" />
     </div>
   );
 };
 
-export default Login;
+export default Verify;
