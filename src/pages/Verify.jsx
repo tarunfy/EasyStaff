@@ -1,5 +1,6 @@
 import React from "react";
 import svg from "../assets/images/login.svg";
+import { Link } from "react-router-dom";
 
 const Verify = () => {
   const handleSubmit = (e) => {
@@ -13,7 +14,10 @@ const Verify = () => {
           Manage staff easily from <br /> your desktop
         </h1>
         <h1 className="text-tertiary-900 text-xl">
-          OTP has been sent to your mobile phone
+          OTP sent to 9876543210{" "}
+          <Link to="/login" className="ml-1 font-semibold text-primary-500">
+            Change Number
+          </Link>
         </h1>
         <form onSubmit={handleSubmit} className="mt-5">
           <div>

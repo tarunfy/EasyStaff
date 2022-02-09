@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import svg from "../assets/images/login.svg";
 import { obj } from "../dialcodes.js";
-import { Redirect } from "react-router-dom";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     setTimeout(() => {
-      <Redirect to="/verify" />;
+      window.location.href = "/verify";
+      setLoading(false);
     }, 3000);
   };
 
@@ -37,6 +39,7 @@ const Login = () => {
             <input
               type="number"
               required
+              defaultValue={9876543210}
               className="py-3 px-1 font-bold text-lg border-2 border-gray"
             />
           </div>
@@ -44,7 +47,7 @@ const Login = () => {
             type="submit"
             className="mt-5 bg-primary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
           >
-            Continue
+            {loading ? "Sending..." : "Continue"}
           </button>
         </form>
       </div>
