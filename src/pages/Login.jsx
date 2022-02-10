@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import svg from "../assets/images/login.svg";
-import { obj } from "../dialcodes.js";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -21,30 +20,22 @@ const Login = () => {
         <h1 className="text-tertiary-900 text-2xl">
           Enter your mobile number to continue
         </h1>
-        <form onSubmit={handleSubmit} className="mt-5">
-          <div>
-            <select
-              name="dailCode"
-              id="dial-code"
-              required
-              className="py-2 px-1 font-bold text-lg mr-2 focus:outline-none"
-            >
-              {obj.countries.map((country) => (
-                <option value={country.code} key={country.name}>
-                  {country.name}
-                </option>
-              ))}
-            </select>
+        <form onSubmit={handleSubmit} className="mt-5 flex flex-col">
+          <div className="flex items-center">
+            <span className="text-lg font-bold p-3 rounded-sm mr-2 bg-white border-gray border-2">
+              +91
+            </span>
             <input
-              type="number"
+              type="tel"
+              maxLength="10"
               required
               defaultValue={9876543210}
-              className="py-3 px-1 font-bold text-lg border-2 border-gray"
+              className="p-3 w-48  font-bold text-lg border-2 border-gray"
             />
           </div>
           <button
             type="submit"
-            className="mt-5 bg-primary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+            className="mt-5 w-44 bg-primary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
           >
             {loading ? (
               <div className="flex justify-center items-center">

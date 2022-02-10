@@ -32,8 +32,7 @@ const Verify = () => {
             <input
               type="number"
               required
-              id="partitioned"
-              className="p-4"
+              className="p-4 border-2 border-gray"
               placeholder="OTP"
             />
           </div>
