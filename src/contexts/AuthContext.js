@@ -16,7 +16,7 @@ export const AuthProvider = ({children}) => {
       if(!user){
         setCurrentUser(null);
       }else{
-        return;
+        setCurrentUser(user);
       }
     });
   });
@@ -34,20 +34,23 @@ export const AuthProvider = ({children}) => {
   };
 
   const verifyCode = async (code) =>{
-    console.log('Called verify code')
     setIsLoading(true);
     try{
       const result = await confirmationResult.confirm(code);
-      console.log(result.user);
+      setCurrentUser(result.user);
       setIsLoading(false);
     }catch(err){
       console.log(err);
       setIsLoading(false);
     }
-  } 
+  };
+  
+  const logout = () =>{
+    auth.signOut();
+  }
 
   return (
-    <AuthContext.Provider value={{currentUser, isLoading, setIsLoading, phoneAuth, verifyCode}}>
+    <AuthContext.Provider value={{currentUser, logout, isLoading, setIsLoading, phoneAuth, verifyCode}}>
         {children}
     </AuthContext.Provider>
   );

@@ -2,16 +2,21 @@ import React, { useState, useEffect, useContext } from "react";
 import svg from "../assets/images/login.svg";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const Verify = () => {
   const [counter, setCounter] = useState(30);
   const [code, setCode] = useState("");
+  const history = useHistory();
 
-  const { verifyCode } = useContext(AuthContext);
+  const { verifyCode, currentUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     verifyCode(code);
+    if (currentUser) {
+      history.push("/dashboard");
+    }
   };
 
   useEffect(() => {
