@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Verify from "./pages/Verify";
+import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className="font-Ubuntu">
       <Switch>

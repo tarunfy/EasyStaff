@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import svg from "../assets/images/login.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Verify = () => {
   const [counter, setCounter] = useState(30);
+  const [code, setCode] = useState("");
+
+  const { verifyCode } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    verifyCode(code);
   };
 
   useEffect(() => {
@@ -22,7 +27,7 @@ const Verify = () => {
           Manage staff easily from <br /> your desktop
         </h1>
         <h1 className="text-tertiary-900 text-xl">
-          OTP sent to 9876543210{" "}
+          OTP has been sent{" "}
           <Link to="/login" className="ml-1 font-semibold text-primary-500">
             Change Number
           </Link>
@@ -34,6 +39,8 @@ const Verify = () => {
               required
               className="p-4 border-2 border-gray"
               placeholder="OTP"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
             />
           </div>
           <button

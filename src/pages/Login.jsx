@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import svg from "../assets/images/login.svg";
+import firebase from "firebase/app";
+import { AuthContext } from "../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
-  const handleSubmit = (e) => {
+  const [phoneNumber, setPhoneNumber] = useState("8287784691");
+  const { phoneAuth, isLoading } = useContext(AuthContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+      "recaptcha-container"
+    );
+    window.recaptchaVerifier.render();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      window.location.href = "/verify";
-    }, 3000);
+    await phoneAuth("+91" + phoneNumber);
+    history.push("/verify");
   };
 
   return (
@@ -21,7 +32,7 @@ const Login = () => {
           Enter your mobile number to continue
         </h1>
         <form onSubmit={handleSubmit} className="mt-5 flex flex-col">
-          <div className="flex items-center">
+          <div className="flex items-center mb-5">
             <span className="text-lg font-bold p-3 rounded-sm mr-2 bg-white border-gray border-2">
               +91
             </span>
@@ -29,15 +40,17 @@ const Login = () => {
               type="tel"
               maxLength="10"
               required
-              defaultValue={9876543210}
-              className="p-3 w-48  font-bold text-lg border-2 border-gray"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="p-3 w-48 font-bold text-lg border-2 border-gray"
             />
           </div>
+          <div id="recaptcha-container"></div>
           <button
             type="submit"
             className="mt-5 w-44 bg-primary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
           >
-            {loading ? (
+            {isLoading ? (
               <div className="flex justify-center items-center">
                 <svg
                   role="status"
