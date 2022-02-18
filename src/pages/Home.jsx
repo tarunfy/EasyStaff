@@ -14,7 +14,7 @@ const Home = () => {
         className="text-center text-tertiary-300 max-w-3xl mt-10 leading-8"
         id="hero-sub-heading"
       >
-        TankhavaBook is a free staff attendance & payroll management app that
+        EasyStaff is a free staff attendance & payroll management app that
         enables employers to easily manage their staff with automatic salary
         calculation, salary payment and more.
       </p>

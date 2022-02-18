@@ -5,7 +5,6 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 
 const Verify = () => {
-  const [counter, setCounter] = useState(30);
   const [code, setCode] = useState("");
   const history = useHistory();
 
@@ -18,12 +17,6 @@ const Verify = () => {
       history.push("/dashboard");
     }
   };
-
-  useEffect(() => {
-    const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-    return () => clearInterval(timer);
-  }, [counter]);
 
   return (
     <div className="flex justify-around items-center bg-slate-100  bg-gradient-to-br h-screen w-full">
@@ -55,16 +48,6 @@ const Verify = () => {
             Continue
           </button>
         </form>
-        <p className="mt-5 font-sans text-lg">
-          Didn't recieve OTP?
-          {counter === 0 ? (
-            <button className="ml-3 font-semibold text-primary-500">
-              Resend
-            </button>
-          ) : (
-            <span className="ml-2 font-bold">00:{counter}</span>
-          )}
-        </p>
       </div>
       <img src={svg} alt="img" className="h-128 w-128" />
     </div>
