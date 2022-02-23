@@ -14,6 +14,10 @@ const Details = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(details);
+    resetForm();
+  };
+
+  const resetForm = () => {
     setDetails({
       businessName: "",
       staffWorkingHours: "08:00",
@@ -60,10 +64,17 @@ const Details = () => {
               className="text-xl p-2 border-2 hover:border-primary-500 cursor-text focus:border-2 focus:border-primary-400 w-full border-gray-300 outline-none"
             />
           </div>
-          <button className="w-full bg-primary-500 text-white font-semibold text-xl py-2 px-4 my-4 hover:bg-primary-600 duration-500 transition-colors ease-in-out">
+          <button
+            type="submit"
+            className="w-full bg-primary-500 text-white font-semibold text-xl py-2 px-4 my-4 hover:bg-primary-600 duration-500 transition-colors ease-in-out"
+          >
             Create Business
           </button>
-          <button className="w-full text-primary-500 bg-white border-2 border-primary-500 font-semibold text-xl py-2 px-4 hover:bg-primary-50  duration-500 transition-colors ease-in-outs">
+          <button
+            type="reset"
+            onClick={resetForm}
+            className="w-full text-primary-500 bg-white border-2 border-primary-500 font-semibold text-xl py-2 px-4 hover:bg-primary-50  duration-500 transition-colors ease-in-outs"
+          >
             Clear
           </button>
         </form>
