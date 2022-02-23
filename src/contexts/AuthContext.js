@@ -5,21 +5,22 @@ export const AuthContext = createContext(null);
 
 
 export const AuthProvider = ({children}) => {
-  
+  const [isFetchingUser, setIsFetchingUser] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState({});
 
-
   useEffect(()=>{
-    auth.onAuthStateChanged(user=>{
-      if(!user){
-        setCurrentUser(null);
-      }else{
+    auth.onAuthStateChanged((user)=>{
+      if(user){
         setCurrentUser(user);
+      }else{
+        setCurrentUser(null);
       }
-    });
-  });
+
+      setIsFetchingUser(false);
+    })
+  }, [])
   
   const phoneAuth = async (number) =>{
     setIsLoading(true);
@@ -36,13 +37,11 @@ export const AuthProvider = ({children}) => {
   const verifyCode = async (code) =>{
     setIsLoading(true);
     try{
-      const result = await confirmationResult.confirm(code);
-      setCurrentUser(result.user);
-      setIsLoading(false);
+      await confirmationResult.confirm(code);
     }catch(err){
       console.log(err);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
   
   const logout = () =>{
@@ -50,8 +49,8 @@ export const AuthProvider = ({children}) => {
   }
 
   return (
-    <AuthContext.Provider value={{currentUser, logout, isLoading, setIsLoading, phoneAuth, verifyCode}}>
-        {children}
+    <AuthContext.Provider value={{setCurrentUser, currentUser, logout, isLoading, setIsLoading, phoneAuth, verifyCode}}>
+        {!isFetchingUser && children}
     </AuthContext.Provider>
   );
 }

@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Verify from "./pages/Verify";
+import Details from "./pages/Details";
 import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="font-Ubuntu">
+    <div>
       <Switch>
         <Route
           exact
@@ -28,6 +29,13 @@ function App() {
         />
         <Route
           exact
+          path="/verify"
+          render={(props) =>
+            !currentUser ? <Verify {...props} /> : <Redirect to="/dashboard" />
+          }
+        />
+        <Route
+          exact
           path="/dashboard"
           render={(props) =>
             currentUser ? <Dashboard {...props} /> : <Redirect to="/login" />
@@ -35,9 +43,9 @@ function App() {
         />
         <Route
           exact
-          path="/verify"
+          path="/add-details"
           render={(props) =>
-            !currentUser ? <Verify {...props} /> : <Redirect to="/dashboard" />
+            currentUser ? <Details {...props} /> : <Redirect to="/login" />
           }
         />
       </Switch>
