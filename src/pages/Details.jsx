@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import businessImg from "../assets/images/business.svg";
 import Spinner from "../components/Spinner";
 import { AuthContext } from "../contexts/AuthContext";
@@ -14,13 +14,24 @@ const Details = () => {
   const history = useHistory();
 
   const { currentUser } = useContext(AuthContext);
-  const { createBusiness, isLoading } = useContext(BusinessContext);
-
+  const { createBusiness, isLoading, fetchBusiness, isFetching } =
+    useContext(BusinessContext);
   const { businessName, staffWorkingHours } = details;
+
+  useEffect(() => {
+    async function checkBusiness() {
+      const exists = await fetchBusiness(currentUser.uid);
+      if (exists) {
+        history.push("/dashboard");
+      }
+    }
+    checkBusiness();
+  }, []);
 
   const handleChange = (e) => {
     setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createBusiness(currentUser.uid, details);
@@ -28,14 +39,14 @@ const Details = () => {
     history.push("/dashboard");
   };
 
-  if (isLoading) return <Spinner />;
-
   const resetForm = () => {
     setDetails({
       businessName: "",
       staffWorkingHours: "08:00",
     });
   };
+
+  if (isLoading || isFetching) return <Spinner />;
 
   return (
     <>

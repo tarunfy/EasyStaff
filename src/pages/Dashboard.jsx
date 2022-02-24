@@ -6,27 +6,27 @@ import Spinner from "../components/Spinner";
 
 const Dashboard = () => {
   const { logout, currentUser } = useContext(AuthContext);
-  const { businessExists, isFetching, setBusiness, fetchBusiness } =
-    useContext(BusinessContext);
+  const { fetchBusiness, isFetching, business } = useContext(BusinessContext);
 
   const history = useHistory();
 
   useEffect(() => {
-    async function checkBusiness() {
-      const exist = await businessExists(currentUser.uid);
-      if (!exist) history.push("/add-business");
-      const businessData = await fetchBusiness(currentUser.uid);
-      console.log(businessData.data());
-    }
-
-    checkBusiness();
+    fetchBusiness(currentUser.uid);
   }, []);
 
   if (isFetching) return <Spinner />;
 
+  if (business == null) history.push("/add-business");
+
   return (
     <div className="h-screen w-full text-center">
       <p className="text-6xl">Welcome {currentUser.phoneNumber} 👋🏻</p>
+      {business && (
+        <>
+          <p>Buisness name: {business.businessName}</p>
+          <p>Staff working hours: {business.staffWorkingHours}</p>
+        </>
+      )}
       <button
         onClick={logout}
         className="px-4 py-2 text-xl rounded-lg bg-primary-500 text-white font-semibold mt-3"

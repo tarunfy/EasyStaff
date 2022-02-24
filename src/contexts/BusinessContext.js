@@ -8,10 +8,11 @@ export const BusinessProvider = ({ children }) => {
   const [business, setBusiness] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const businessExists = async (userId) => {
+  const fetchBusiness = async (userId) => {
     setIsFetching(true);
     try {
       const businessRef = await db.collection("business").doc(userId).get();
+      setBusiness(businessRef.data());
       setIsFetching(false);
       return businessRef.exists;
     } catch (err) {
@@ -30,27 +31,15 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const fetchBusiness = async (userId) => {
-    setIsFetching(true);
-    try {
-      const business = await db.collection("business").doc(userId).get();
-      setIsFetching(false);
-      return business;
-    } catch (err) {
-      console.log(err);
-    }
-    setIsFetching(false);
-  };
-
   return (
     <BusinessContext.Provider
       value={{
-        businessExists,
+        business,
+        fetchBusiness,
         isFetching,
         setBusiness,
         isLoading,
         createBusiness,
-        fetchBusiness,
       }}
     >
       {children}
