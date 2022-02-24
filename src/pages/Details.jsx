@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import businessImg from "../assets/images/business.svg";
+import Spinner from "../components/Spinner";
+import { AuthContext } from "../contexts/AuthContext";
+import { BusinessContext } from "../contexts/BusinessContext";
+import { useHistory } from "react-router-dom";
 
 const Details = () => {
   const [details, setDetails] = useState({
@@ -7,16 +11,24 @@ const Details = () => {
     staffWorkingHours: "08:00",
   });
 
+  const history = useHistory();
+
+  const { currentUser } = useContext(AuthContext);
+  const { createBusiness, isLoading } = useContext(BusinessContext);
+
   const { businessName, staffWorkingHours } = details;
 
   const handleChange = (e) => {
     setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(details);
+    await createBusiness(currentUser.uid, details);
     resetForm();
+    history.push("/dashboard");
   };
+
+  if (isLoading) return <Spinner />;
 
   const resetForm = () => {
     setDetails({

@@ -2,23 +2,26 @@ import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { useHistory } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const Dashboard = () => {
   const { logout, currentUser } = useContext(AuthContext);
-  const { businessExists, isFetching } = useContext(BusinessContext);
+  const { businessExists, isFetching, setBusiness } =
+    useContext(BusinessContext);
 
   const history = useHistory();
 
   useEffect(() => {
     async function fetchBusiness() {
-      const exist = await businessExists("currentUser.uid");
-      if (!exist) history.push("/add-details");
+      const exist = await businessExists(currentUser.uid);
+      if (!exist) history.push("/add-business");
+      console.log(exist);
     }
 
     fetchBusiness();
   }, []);
 
-  if (isFetching) return <h1>Fetching business details</h1>;
+  if (isFetching) return <Spinner />;
 
   return (
     <div className="h-screen w-full text-center">

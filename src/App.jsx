@@ -43,7 +43,7 @@ function App() {
         />
         <Route
           exact
-          path="/add-details"
+          path="/add-business"
           render={(props) =>
             currentUser ? <Details {...props} /> : <Redirect to="/login" />
           }
