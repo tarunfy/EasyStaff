@@ -48,7 +48,7 @@ const Login = () => {
           <div id="recaptcha-container"></div>
           <button
             type="submit"
-            className="mt-5 w-44 bg-primary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+            className="bg-primary-500 mt-5 w-44  hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
           >
             {isLoading ? (
               <div className="flex justify-center items-center">
