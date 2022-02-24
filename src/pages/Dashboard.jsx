@@ -6,19 +6,20 @@ import Spinner from "../components/Spinner";
 
 const Dashboard = () => {
   const { logout, currentUser } = useContext(AuthContext);
-  const { businessExists, isFetching, setBusiness } =
+  const { businessExists, isFetching, setBusiness, fetchBusiness } =
     useContext(BusinessContext);
 
   const history = useHistory();
 
   useEffect(() => {
-    async function fetchBusiness() {
+    async function checkBusiness() {
       const exist = await businessExists(currentUser.uid);
       if (!exist) history.push("/add-business");
-      console.log(exist);
+      const businessData = await fetchBusiness(currentUser.uid);
+      console.log(businessData.data());
     }
 
-    fetchBusiness();
+    checkBusiness();
   }, []);
 
   if (isFetching) return <Spinner />;
