@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
 
   const phoneAuth = async (number) => {
     setIsLoading(true);
+    let result = true;
     try {
       const confirmationResult = await auth.signInWithPhoneNumber(
         number,
@@ -32,8 +33,11 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
       setAuthError("Phone number isn't valid or too short");
+      result = false;
     }
     setIsLoading(false);
+
+    return result;
   };
 
   const verifyCode = async (code) => {

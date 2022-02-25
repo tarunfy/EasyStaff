@@ -20,10 +20,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setAuthError("");
-    await phoneAuth("+91" + phoneNumber);
-    if (!authError) {
-      history.push("/verify");
-    }
+    const isSuccess = await phoneAuth("+91" + phoneNumber);
+    if (isSuccess) history.push("/verify");
   };
 
   return (
