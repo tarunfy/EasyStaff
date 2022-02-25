@@ -3,6 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { useHistory } from "react-router-dom";
 import Spinner from "../components/Spinner";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const Dashboard = () => {
   const { logout, currentUser } = useContext(AuthContext);
@@ -19,21 +20,12 @@ const Dashboard = () => {
   if (business == null) history.push("/add-business");
 
   return (
-    <div className="h-screen w-full text-center">
-      <p className="text-6xl">Welcome {currentUser.phoneNumber} 👋🏻</p>
-      {business && (
-        <>
-          <p>Buisness name: {business.businessName}</p>
-          <p>Staff working hours: {business.staffWorkingHours}</p>
-        </>
-      )}
-      <button
-        onClick={logout}
-        className="px-4 py-2 text-xl rounded-lg bg-quadtiary-500 text-white font-semibold mt-3"
-      >
-        Logout
-      </button>
-    </div>
+    <>
+      <Sidebar />
+      <div className="h-screen pl-56 w-full bg-slate-50 text-center">
+        <p className="text-6xl">Welcome {currentUser.phoneNumber} 👋🏻</p>
+      </div>
+    </>
   );
 };
 
