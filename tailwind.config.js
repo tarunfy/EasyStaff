@@ -52,6 +52,18 @@ module.exports = {
           800: "#929394",
           900: "#787879",
         },
+        quadtiary: {
+          50: "#f6f2ff",
+          100: "#ede6ff",
+          200: "#d2bfff",
+          300: "#b799ff",
+          400: "#824dff",
+          500: "#4c00ff",
+          600: "#4400e6",
+          700: "#3900bf",
+          800: "#2e0099",
+          900: "#25007d",
+        },
       },
       animation: {
         "gradient-x": "gradient-x 6s ease-in-out infinite",
