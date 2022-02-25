@@ -29,7 +29,7 @@ const Dashboard = () => {
       )}
       <button
         onClick={logout}
-        className="px-4 py-2 text-xl rounded-lg bg-primary-500 text-white font-semibold mt-3"
+        className="px-4 py-2 text-xl rounded-lg bg-quadtiary-500 text-white font-semibold mt-3"
       >
         Logout
       </button>

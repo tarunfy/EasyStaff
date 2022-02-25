@@ -23,12 +23,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-around items-center bg-slate-100  bg-gradient-to-br h-screen w-full">
+    <div className="pattern-container flex justify-around items-center bg-slate-100  bg-gradient-to-br h-screen w-full">
       <div>
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop
         </h1>
-        <h1 className="text-tertiary-900 text-2xl">
+        <h1 className="text-gray-800 text-2xl">
           Enter your mobile number to continue
         </h1>
         <form onSubmit={handleSubmit} className="mt-5 flex flex-col">
@@ -48,13 +48,13 @@ const Login = () => {
           <div id="recaptcha-container"></div>
           <button
             type="submit"
-            className="bg-primary-500 mt-5 w-44  hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+            className="bg-quadtiary-500 mt-5 w-44  hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
           >
             {isLoading ? (
               <div className="flex justify-center items-center">
                 <svg
                   role="status"
-                  className="mr-2 w-5 h-5 text-gray-200 animate-spin  fill-blue-600"
+                  className="mr-2 w-5 h-5 text-gray-200 animate-spin  fill-quadtiary-600"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

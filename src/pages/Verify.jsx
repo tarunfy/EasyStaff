@@ -15,14 +15,14 @@ const Verify = () => {
   };
 
   return (
-    <div className="flex justify-around items-center bg-slate-100  bg-gradient-to-br h-screen w-full">
+    <div className="pattern-container flex justify-around items-center bg-slate-100  bg-gradient-to-br h-screen w-full">
       <div>
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop
         </h1>
-        <h1 className="text-tertiary-900 text-xl">
+        <h1 className="text-gray-800 text-xl">
           OTP has been sent{" "}
-          <Link to="/login" className="ml-1 font-semibold text-primary-500">
+          <Link to="/login" className="ml-1 font-semibold text-quadtiary-500">
             Change Number
           </Link>
         </h1>
@@ -46,7 +46,7 @@ const Verify = () => {
           )}
           <button
             type="submit"
-            className="mt-5 bg-primary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+            className="mt-5 bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
           >
             Continue
           </button>
