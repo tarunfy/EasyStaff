@@ -28,7 +28,7 @@ const Home = () => {
         <img
           src={arrow}
           alt="scribble-arrow"
-          className="absolute bottom-20 left-[40%] h-20 w-20"
+          className="absolute bottom-12 left-[45%] h-20 w-20 slide-top"
         />
       </div>
     </>
