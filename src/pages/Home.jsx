@@ -9,15 +9,13 @@ const Home = () => {
       <div id="blurry-gradient-2"></div>
       <div className="bg-slate-50 h-screen main flex flex-col justify-center items-center px-10">
         <h1 className="text-8xl text-center z-30 font-bold">
-          Track Staff's Attendence & <br /> Payroll.
+          Track Staff's Attendence <br /> & Payroll.
         </h1>
-
         <p className="text-center leading-10 text-2xl z-30 font-semibold text-gray-700 mt-10">
           EasyStaff is a free staff attendance and payroll management app that
           enables employers <br /> to easily manage their staff with automatic
           salary calculation, <br /> salary payment and more.
         </p>
-
         <Link
           to="/login"
           className="uppercase z-30 hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all mt-10 text-2xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-3"
@@ -28,7 +26,7 @@ const Home = () => {
         <img
           src={arrow}
           alt="scribble-arrow"
-          className="absolute bottom-12 left-[45%] h-20 w-20 slide-top"
+          className="absolute bottom-12 z-0 left-[45%] h-20 w-20 slide-top"
         />
       </div>
     </>

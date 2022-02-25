@@ -195,6 +195,14 @@ input::-webkit-inner-spin-button {
   animation: slide-top 1.5s infinite alternate both;
 }
 
+@media (max-height: 728px) {
+  .slide-top {
+    position: absolute;
+    left: 45%;
+    bottom: 1.8rem;
+  }
+}
+
 @-webkit-keyframes slide-top {
   0% {
     -webkit-transform: translateY(0);
@@ -202,7 +210,7 @@ input::-webkit-inner-spin-button {
   }
   100% {
     -webkit-transform: translateY(-20px);
-    transform: translateY(-30px);
+    transform: translateY(-20px);
   }
 }
 @keyframes slide-top {
@@ -211,7 +219,7 @@ input::-webkit-inner-spin-button {
     transform: translateY(0);
   }
   100% {
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
   }
 }
