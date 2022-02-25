@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import arrow from "../assets/images/arrow.svg";
 
 const Home = () => {
   return (
@@ -24,6 +25,11 @@ const Home = () => {
         >
           Start Tracking
         </Link>
+        <img
+          src={arrow}
+          alt="scribble-arrow"
+          className="absolute bottom-20 left-[40%] h-20 w-20"
+        />
       </div>
     </>
   );
