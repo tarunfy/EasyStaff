@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
+import { SidebarData } from "./SidebarData";
 import { AuthContext } from "../../contexts/AuthContext";
 import { MdOutlineLogout } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { logout } = useContext(AuthContext);
@@ -13,14 +15,32 @@ const Sidebar = () => {
         </h2>
       </div>
       <div id="mid" className="flex flex-col items-center justify-center">
+        {SidebarData.map((value, index) => (
+          <Link
+            to={value.link}
+            key={index}
+            className={`${
+              window.location.pathname == value.link
+                ? "bg-quadtiary-500 py-4 w-full flex justify-evenly items-center cursor-pointer"
+                : "hover:bg-quadtiary-600 py-4 w-full flex justify-evenly items-center cursor-pointer"
+            }  `}
+          >
+            <div className="text-white flex w-2/5 justify-end px-3">
+              {value.icon}
+            </div>
+            <h4 className="text-white text-lg font-medium flex w-3/5">
+              {value.title}
+            </h4>
+          </Link>
+        ))}
         <div
-          className="hover:bg-quadtiary-600 py-4 w-full flex justify-center cursor-pointer"
+          className="hover:bg-quadtiary-600 text-white hover:text-red-500 transition-colors duration-300 ease-in-out  py-4 w-full flex justify-evenly items-center cursor-pointer"
           onClick={logout}
         >
-          <button className="flex text-white justify-center items-center text-lg  font-medium">
-            <MdOutlineLogout className="mr-2" />
-            Logout
-          </button>
+          <div className="flex w-2/5 justify-end px-3">
+            <MdOutlineLogout className="h-5 w-5" />
+          </div>
+          <h4 className="text-lg font-medium flex w-3/5">Logout</h4>
         </div>
       </div>
     </div>
