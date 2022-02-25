@@ -29,7 +29,10 @@ export const AuthProvider = ({ children }) => {
         window.recaptchaVerifier
       );
       setConfirmationResult(confirmationResult);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+      setAuthError("Phone number isn't valid or too short");
+    }
     setIsLoading(false);
   };
 

@@ -6,10 +6,7 @@ const Home = () => {
     <>
       <div id="blurry-gradient"></div>
       <div id="blurry-gradient-2"></div>
-      <div
-        id="main"
-        className="bg-slate-50 h-screen main flex flex-col justify-center items-center px-10"
-      >
+      <div className="bg-slate-50 h-screen main flex flex-col justify-center items-center px-10">
         <h1 className="text-8xl text-center z-30 font-bold">
           Track Staff's Attendence & <br /> Payroll.
         </h1>

@@ -31,6 +31,7 @@ const Verify = () => {
             <input
               type="number"
               required
+              autoFocus
               className="p-4 border-2 border-gray font-normal text-lg  focus:outline-quadtiary-400"
               placeholder="OTP"
               value={code}

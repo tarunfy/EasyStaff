@@ -4,13 +4,13 @@
 
 ::-moz-selection {
   /* Code for Firefox */
-  color: black;
-  background: #3742fa;
+  color: white;
+  background: #4c00ff;
 }
 
 ::selection {
-  color: black;
-  background: #3742fa;
+  color: white;
+  background: #4c00ff;
 }
 
 @font-face {

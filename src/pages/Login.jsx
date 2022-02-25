@@ -6,7 +6,8 @@ import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("8287784691");
-  const { phoneAuth, isLoading } = useContext(AuthContext);
+  const { phoneAuth, isLoading, authError, setAuthError } =
+    useContext(AuthContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -18,8 +19,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setAuthError("");
     await phoneAuth("+91" + phoneNumber);
-    history.push("/verify");
+    if (!authError) {
+      history.push("/verify");
+    }
   };
 
   return (
@@ -40,17 +44,23 @@ const Login = () => {
               type="tel"
               maxLength="10"
               required
+              autoFocus
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               className="p-3 w-48 font-normal text-lg border-2 border-gray focus:outline-quadtiary-400"
             />
           </div>
           <div id="recaptcha-container"></div>
+          {authError && (
+            <div className="mt-5 text-red-500 text-base max-w-xs">
+              {authError}
+            </div>
+          )}
           <button
             type="submit"
             className="bg-quadtiary-500 mt-5 w-44  hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
           >
-            {isLoading ? (
+            {isLoading && !authError ? (
               <div className="flex justify-center items-center">
                 <svg
                   role="status"
