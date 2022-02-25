@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("http://fonts.cdnfonts.com/css/sofia-pro");
+
 ::-moz-selection {
   /* Code for Firefox */
   color: white;
@@ -13,28 +15,8 @@
   background: #4c00ff;
 }
 
-@font-face {
-  font-family: "IntegralCF";
-  src: url(./assets/fonts/IntegralCF-Heavy.otf);
-}
-
-@font-face {
-  font-family: "SofiaPro";
-  src: url(./assets/fonts/Sofia\ Pro\ Bold\.otf);
-}
-
-#hero-heading {
-  font-family: "IntegralCF";
-  font-size: 6.5rem;
-}
-
-#hero-sub-heading {
-  font-family: "SofiaPro";
-  font-size: 1.3rem;
-}
-
 #cta-btn {
-  font-family: "SofiaPro";
+  font-family: "Sofia Pro", sans-serif;
 }
 
 /* Hour */
