@@ -6,11 +6,12 @@ import { AuthContext } from "../contexts/AuthContext";
 const Verify = () => {
   const [code, setCode] = useState("");
 
-  const { verifyCode, authError, setAuthError } = useContext(AuthContext);
+  const { verifyCode, verifyCodeError, setVerifyCodeError } =
+    useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAuthError("");
+    setVerifyCodeError("");
     verifyCode(code);
   };
 
@@ -38,16 +39,21 @@ const Verify = () => {
               onChange={(e) => setCode(e.target.value)}
             />
           </div>
-          {authError && (
+          {verifyCodeError && (
             <>
               <p className="mt-5 text-red-500 text-base max-w-xs">
-                {authError}
+                {verifyCodeError}
               </p>
             </>
           )}
           <button
             type="submit"
-            className="mt-5 bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+            disabled={!code}
+            className={`${
+              !code
+                ? "text-white bg-quadtiary-300 mt-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
+                : "mt-5 bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+            }`}
           >
             Continue
           </button>

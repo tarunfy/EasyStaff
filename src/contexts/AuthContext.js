@@ -8,7 +8,8 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState({});
-  const [authError, setAuthError] = useState("");
+  const [phoneAuthError, setPhoneAuthError] = useState("");
+  const [verifyCodeError, setVerifyCodeError] = useState("");
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }) => {
       setConfirmationResult(confirmationResult);
     } catch (err) {
       console.log(err);
-      setAuthError("Phone number isn't valid or too short");
+      setPhoneAuthError("Phone number isn't valid or too short");
       result = false;
     }
     setIsLoading(false);
@@ -45,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await confirmationResult.confirm(code);
     } catch (err) {
-      setAuthError("The OTP is invalid");
+      setVerifyCodeError("The OTP is invalid");
     }
     setIsLoading(false);
   };
@@ -58,8 +59,10 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         setCurrentUser,
-        authError,
-        setAuthError,
+        setVerifyCodeError,
+        verifyCodeError,
+        phoneAuthError,
+        setPhoneAuthError,
         currentUser,
         logout,
         isLoading,

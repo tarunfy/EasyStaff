@@ -34,7 +34,7 @@ const Sidebar = () => {
           </Link>
         ))}
         <div
-          className="hover:bg-quadtiary-600 text-white hover:text-red-500 transition-colors duration-300 ease-in-out  py-4 w-full flex justify-evenly items-center cursor-pointer"
+          className="hover:bg-quadtiary-600 mt-10 text-white hover:text-red-500 transition-colors duration-300 ease-in-out  py-4 w-full flex justify-evenly items-center cursor-pointer"
           onClick={logout}
         >
           <div className="flex w-2/5 justify-end px-3">

@@ -5,8 +5,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
-  const [phoneNumber, setPhoneNumber] = useState("8287784691");
-  const { phoneAuth, isLoading, authError, setAuthError } =
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const { phoneAuth, isLoading, phoneAuthError, setPhoneAuthError } =
     useContext(AuthContext);
   const history = useHistory();
 
@@ -19,7 +19,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setAuthError("");
+    setPhoneAuthError("");
     const isSuccess = await phoneAuth("+91" + phoneNumber);
     if (isSuccess) history.push("/verify");
   };
@@ -41,6 +41,7 @@ const Login = () => {
             <input
               type="tel"
               maxLength="10"
+              pattern="[0-9]{10}"
               required
               autoFocus
               value={phoneNumber}
@@ -49,16 +50,21 @@ const Login = () => {
             />
           </div>
           <div id="recaptcha-container"></div>
-          {authError && (
+          {phoneAuthError && (
             <div className="mt-5 text-red-500 text-base max-w-xs">
-              {authError}
+              {phoneAuthError}
             </div>
           )}
           <button
             type="submit"
-            className="bg-quadtiary-500 mt-5 w-44  hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+            disabled={!phoneNumber}
+            className={`${
+              !phoneNumber
+                ? "text-white w-44 bg-quadtiary-300 mt-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
+                : "mt-5 w-44 bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+            }`}
           >
-            {isLoading && !authError ? (
+            {isLoading && !phoneAuthError ? (
               <div className="flex justify-center items-center">
                 <svg
                   role="status"

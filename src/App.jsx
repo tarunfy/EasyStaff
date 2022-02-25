@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Verify from "./pages/Verify";
 import Details from "./pages/Details";
+import Profile from "./pages/Profile";
 import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
@@ -46,6 +47,13 @@ function App() {
           path="/add-business"
           render={(props) =>
             currentUser ? <Details {...props} /> : <Redirect to="/login" />
+          }
+        />
+        <Route
+          exact
+          path="/profile"
+          render={(props) =>
+            currentUser ? <Profile {...props} /> : <Redirect to="/login" />
           }
         />
       </Switch>
