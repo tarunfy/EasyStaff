@@ -20,9 +20,9 @@ const Verify = () => {
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop
         </h1>
-        <h1 className="text-gray-800 text-xl">
+        <h1 className="text-gray-800 text-xl font-medium">
           OTP has been sent{" "}
-          <Link to="/login" className="ml-1 font-semibold text-quadtiary-500">
+          <Link to="/login" className="ml-1 font-medium text-quadtiary-500">
             Change Number
           </Link>
         </h1>
@@ -31,7 +31,7 @@ const Verify = () => {
             <input
               type="number"
               required
-              className="p-4 border-2 border-gray"
+              className="p-4 border-2 border-gray font-normal text-lg  focus:outline-quadtiary-400"
               placeholder="OTP"
               value={code}
               onChange={(e) => setCode(e.target.value)}

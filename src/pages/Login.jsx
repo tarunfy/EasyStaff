@@ -28,12 +28,12 @@ const Login = () => {
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop
         </h1>
-        <h1 className="text-gray-800 text-2xl">
+        <h1 className="text-gray-800 text-2xl font-medium">
           Enter your mobile number to continue
         </h1>
         <form onSubmit={handleSubmit} className="mt-5 flex flex-col">
           <div className="flex items-center mb-5">
-            <span className="text-lg font-bold p-3 rounded-sm mr-2 bg-white border-gray border-2">
+            <span className="text-lg font-normal p-3 rounded-sm mr-2 bg-white border-gray border-2">
               +91
             </span>
             <input
@@ -42,7 +42,7 @@ const Login = () => {
               required
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="p-3 w-48 font-bold text-lg border-2 border-gray"
+              className="p-3 w-48 font-normal text-lg border-2 border-gray focus:outline-quadtiary-400"
             />
           </div>
           <div id="recaptcha-container"></div>
