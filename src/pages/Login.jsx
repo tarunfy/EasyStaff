@@ -6,15 +6,22 @@ import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const { phoneAuth, isLoading, phoneAuthError, setPhoneAuthError } =
     useContext(AuthContext);
   const history = useHistory();
 
   useEffect(() => {
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      "recaptcha-container"
+      "recaptcha-container",
+      {
+        callback: function (response) {
+          setRecaptchaVerified(true);
+          console.log(response);
+        },
+      }
     );
-    window.recaptchaVerifier.render();
+    window.recaptchaVerifier.verify();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -57,9 +64,9 @@ const Login = () => {
           )}
           <button
             type="submit"
-            disabled={!phoneNumber}
+            disabled={!phoneNumber || !recaptchaVerified}
             className={`${
-              !phoneNumber
+              !phoneNumber || !recaptchaVerified
                 ? "text-white w-44 bg-quadtiary-300 mt-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
                 : "mt-5 w-44 bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
             }`}
