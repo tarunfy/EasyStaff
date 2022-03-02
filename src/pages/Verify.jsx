@@ -30,9 +30,11 @@ const Verify = () => {
         <form onSubmit={handleSubmit} className="mt-5">
           <div>
             <input
-              type="number"
+              type="tel"
               required
               autoFocus
+              pattern="[0-9]{6}"
+              maxLength={"6"}
               className="p-4 border-2 border-gray font-normal text-lg  focus:outline-quadtiary-400"
               placeholder="OTP"
               value={code}

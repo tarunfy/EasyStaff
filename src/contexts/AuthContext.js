@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { auth, db } from "../services/firebase";
+import { auth } from "../services/firebase";
 
 export const AuthContext = createContext(null);
 
@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [isFetchingUser, setIsFetchingUser] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [confirmationResult, setConfirmationResult] = useState({});
+  const [confirmationResult, setConfirmationResult] = useState(null);
   const [phoneAuthError, setPhoneAuthError] = useState("");
   const [verifyCodeError, setVerifyCodeError] = useState("");
 

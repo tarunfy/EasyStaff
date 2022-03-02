@@ -5,7 +5,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("6046214579");
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const { phoneAuth, isLoading, phoneAuthError, setPhoneAuthError } =
     useContext(AuthContext);
@@ -17,7 +17,6 @@ const Login = () => {
       {
         callback: function (response) {
           setRecaptchaVerified(true);
-          console.log(response);
         },
       }
     );
@@ -27,7 +26,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setPhoneAuthError("");
-    const isSuccess = await phoneAuth("+91" + phoneNumber);
+    const isSuccess = await phoneAuth("+1" + phoneNumber);
     if (isSuccess) history.push("/verify");
   };
 
@@ -42,13 +41,12 @@ const Login = () => {
         </h1>
         <form onSubmit={handleSubmit} className="mt-5 flex flex-col">
           <div className="flex items-center mb-5">
-            <span className="text-lg font-normal p-3 rounded-sm mr-2 bg-white border-gray border-2">
-              +91
-            </span>
+            <h1 className="text-lg font-normal p-3 rounded-sm mr-2 bg-white border-gray border-2">
+              +1
+            </h1>
             <input
               type="tel"
               maxLength="10"
-              pattern="[0-9]{10}"
               required
               autoFocus
               value={phoneNumber}

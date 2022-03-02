@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 import Sidebar from "../components/Sidebar/Sidebar";
 
 const Dashboard = () => {
-  const { logout, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { fetchBusiness, isFetching, business } = useContext(BusinessContext);
 
   const history = useHistory();

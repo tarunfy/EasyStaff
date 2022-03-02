@@ -180,7 +180,7 @@ input::-webkit-inner-spin-button {
 @media (max-height: 728px) {
   .slide-top {
     position: absolute;
-    left: 45%;
+    left: 47%;
     bottom: 1.8rem;
   }
 }
@@ -204,4 +204,23 @@ input::-webkit-inner-spin-button {
     -webkit-transform: translateY(-20px);
     transform: translateY(-20px);
   }
+}
+
+span {
+  position: relative;
+}
+
+span::after {
+  content: "";
+  background-color: #4c00ff;
+  width: 0%;
+  position: absolute;
+  height: 10px;
+  bottom: 40%;
+  left: 0%;
+  transition: width 0.455s ease-in-out;
+}
+
+span:hover::after {
+  width: 100%;
 }

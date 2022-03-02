@@ -26,7 +26,7 @@ const Home = () => {
         </p>
         <Link
           to="/login"
-          className="uppercase z-30 font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all mt-10 text-2xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-3"
+          className="uppercase z-30 relative font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all mt-10 text-2xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-3"
           id="cta-btn"
         >
           Start Tracking
@@ -34,7 +34,7 @@ const Home = () => {
         <img
           src={arrow}
           alt="scribble-arrow"
-          className="absolute bottom-12 z-0 left-[45%] h-20 w-20 slide-top"
+          className="absolute bottom-16  z-0 left-[47%] h-20 w-16 slide-top"
         />
       </div>
     </>
