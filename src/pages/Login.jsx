@@ -62,11 +62,11 @@ const Login = () => {
           )}
           <button
             type="submit"
-            disabled={!phoneNumber || !recaptchaVerified}
+            disabled={!phoneNumber || !recaptchaVerified || isLoading}
             className={`${
-              !phoneNumber || !recaptchaVerified
-                ? "text-white w-44 bg-quadtiary-300 mt-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
-                : "mt-5 w-44 bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+              !phoneNumber || !recaptchaVerified || isLoading
+                ? "text-white w-fit bg-quadtiary-300 mt-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
+                : "mt-5 w-fit bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
             }`}
           >
             {isLoading && !phoneAuthError ? (
@@ -90,7 +90,7 @@ const Login = () => {
                 <p>Sending...</p>
               </div>
             ) : (
-              "Continue"
+              "Send OTP"
             )}
           </button>
         </form>
