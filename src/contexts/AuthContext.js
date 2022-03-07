@@ -1,5 +1,6 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { auth } from "../services/firebase";
+import { BusinessContext } from "./BusinessContext";
 
 export const AuthContext = createContext(null);
 
@@ -9,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [signupError, setSignupError] = useState("");
   const [signinError, setSigninError] = useState("");
+
+  const { setBusiness, setStaffList } = useContext(BusinessContext);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -50,6 +53,8 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     auth.signOut();
+    setBusiness(null);
+    setStaffList(null);
   };
 
   return (

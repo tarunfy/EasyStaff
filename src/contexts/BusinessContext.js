@@ -104,6 +104,8 @@ export const BusinessProvider = ({ children }) => {
         updateStaff,
         business,
         staffList,
+        setBusiness,
+        setStaffList,
         isFetching,
         setBusiness,
         isLoading,
