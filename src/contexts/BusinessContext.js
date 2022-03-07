@@ -63,10 +63,10 @@ export const BusinessProvider = ({ children }) => {
     setIsFetching(false);
   };
 
-  const createStaff = async (staffDetails) => {
+  const createStaff = async (details) => {
     setIsLoading(true);
     try {
-      await db.collection("staff").add(staffDetails);
+      await db.collection("staff").add(details);
     } catch (err) {
       console.log(err);
     }
@@ -83,6 +83,16 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const updateStaff = async (docId, details) => {
+    setIsLoading(true);
+    try {
+      await db.collection("staff").doc(docId).update(details);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <BusinessContext.Provider
       value={{
@@ -91,6 +101,7 @@ export const BusinessProvider = ({ children }) => {
         fetchStaff,
         createStaff,
         removeStaff,
+        updateStaff,
         business,
         staffList,
         isFetching,

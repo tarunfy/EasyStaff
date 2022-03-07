@@ -10,7 +10,6 @@ import StaffCard from "../components/StaffCard";
 
 const Staff = () => {
   const [addStaffModal, setAddStaffModal] = useState(false);
-  const [updateStaffModal, setUpdateStaffModal] = useState(false);
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [designation, setDesignation] = useState("");
@@ -50,13 +49,6 @@ const Staff = () => {
 
   if (business == null) history.push("/add-business");
 
-  const openUpdateStaffModal = (staffDocId) => {
-    setUpdateStaffModal(true);
-    console.log("update existing staff...", staffDocId);
-  };
-  const closeUpdateStaffModal = () => {
-    setUpdateStaffModal(false);
-  };
   const openAddStaffModal = () => {
     setAddStaffModal(true);
   };
@@ -79,13 +71,9 @@ const Staff = () => {
       timestamp: new Date(),
     });
 
-    addStaffModal ? closeAddStaffModal() : closeUpdateStaffModal();
+    closeAddStaffModal();
     fetchStaff(business.businessId);
     clearModal();
-  };
-
-  const updateExistingStaff = (staffDocId) => {
-    console.log("update existing staff...", staffDocId);
   };
 
   const handleRemove = async (staffDocId) => {
@@ -124,12 +112,13 @@ const Staff = () => {
               <StaffCard
                 key={index}
                 staff={staff}
-                openUpdateStaffModal={openUpdateStaffModal}
+                clearModal={clearModal}
                 handleRemove={handleRemove}
+                business={business}
               />
             ))}
         </div>
-        {staffList.length < 1 && (
+        {staffList && staffList.length < 1 && (
           <div className="flex justify-center items-center flex-col">
             <img src={notfound} alt="No staff found" className="h-128 w-128" />
             <h1 className="font-bold text-2xl">No staff found</h1>
@@ -137,19 +126,17 @@ const Staff = () => {
         )}
       </div>
       <Modal
-        open={addStaffModal || updateStaffModal}
-        onClose={addStaffModal ? closeAddStaffModal : closeUpdateStaffModal}
+        open={addStaffModal}
+        onClose={closeAddStaffModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
         <Box className="p-3 bg-slate-50 text-center border-none outline-none focus:outline-none ">
-          <h1 className="text-[2rem] font-semibold">
-            {addStaffModal ? "Add Staff" : "Update Staff"}
-          </h1>
+          <h1 className="text-[2rem] font-semibold">Add Staff</h1>
           <hr className="bg-slate-400 h-[2px] w-full mb-4" />
           <form
-            onSubmit={addStaffModal ? addNewStaff : updateExistingStaff}
+            onSubmit={addNewStaff}
             className="flex flex-col justify-start items-start space-y-3"
           >
             <div className="flex justify-between items-center w-full">
@@ -157,14 +144,14 @@ const Staff = () => {
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                placeholder={addStaffModal ? "Full Name" : "Jhon Doe"}
+                placeholder="Full Name"
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
               />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={addStaffModal ? "Email" : "jhondoe@gmail.com"}
+                placeholder="Email"
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
               />
             </div>
@@ -176,16 +163,14 @@ const Staff = () => {
                 pattern="[0-9]{10}"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder={addStaffModal ? "Phone Number" : "9827453621"}
+                placeholder="Phone Number"
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
               />
               <input
                 type="text"
                 value={designation}
                 onChange={(e) => setDesignation(e.target.value)}
-                placeholder={
-                  addStaffModal ? "Designation" : "Chief Technology Officer"
-                }
+                placeholder="Designation"
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
               />
             </div>
@@ -194,14 +179,14 @@ const Staff = () => {
                 type="text"
                 value={managerName}
                 onChange={(e) => setManagerName(e.target.value)}
-                placeholder={addStaffModal ? "Manager Name" : "Om Prakash"}
+                placeholder="Manager Name"
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
               />
               <input
                 type="text"
                 value={salary}
                 onChange={(e) => setSalary(e.target.value)}
-                placeholder={addStaffModal ? "Salary" : "25000"}
+                placeholder="Salary"
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
               />
             </div>
@@ -209,17 +194,13 @@ const Staff = () => {
               <textarea
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder={
-                  addStaffModal ? "Address" : "Street 48, Noida Sectore 48, UP."
-                }
+                placeholder="Address"
                 className="w-full p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
               />
             </div>
             <div className="flex justify-end items-center space-x-3">
               <button
-                onClick={
-                  addStaffModal ? closeAddStaffModal : closeUpdateStaffModal
-                }
+                onClick={closeAddStaffModal}
                 className="font-semibold text-red-500 border-red-500 border-[1px]  duration-300 ease-in-out hover:shadow-xl transition-all  text-xl   px-6 py-2"
               >
                 Cancel

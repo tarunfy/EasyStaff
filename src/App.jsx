@@ -61,7 +61,7 @@ function App() {
           exact
           path="/staff"
           render={(props) =>
-            currentUser ? <Staff {...props} /> : <Redirect to="/login" />
+            currentUser ? <Staff {...props} /> : <Redirect to="/signin" />
           }
         />
       </Switch>
