@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Verify from "./pages/Verify";
 import Details from "./pages/Details";
 import Profile from "./pages/Profile";
+import Staff from "./pages/Staff";
 import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
@@ -54,6 +55,13 @@ function App() {
           path="/profile"
           render={(props) =>
             currentUser ? <Profile {...props} /> : <Redirect to="/login" />
+          }
+        />
+        <Route
+          exact
+          path="/staff"
+          render={(props) =>
+            currentUser ? <Staff {...props} /> : <Redirect to="/login" />
           }
         />
       </Switch>

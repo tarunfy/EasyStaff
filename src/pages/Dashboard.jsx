@@ -10,6 +10,7 @@ const Dashboard = () => {
   const { fetchBusiness, isFetching, business } = useContext(BusinessContext);
 
   const history = useHistory();
+  console.log(currentUser);
 
   useEffect(() => {
     fetchBusiness(currentUser.uid);
