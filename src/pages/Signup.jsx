@@ -97,7 +97,11 @@ const Login = () => {
           </button>
           <p className="text-lg font-medium">
             Have an account?{" "}
-            <Link to="/signin" className="text-quadtiary-500">
+            <Link
+              to="/signin"
+              onClick={() => setSignupError("")}
+              className="text-quadtiary-500"
+            >
               Log In
             </Link>
           </p>

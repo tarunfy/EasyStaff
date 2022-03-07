@@ -10,21 +10,33 @@ export const BusinessProvider = ({ children }) => {
 
   const fetchBusiness = async (userId) => {
     setIsFetching(true);
+    let exists = true;
     try {
-      const businessRef = await db.collection("business").doc(userId).get();
-      setBusiness(businessRef.data());
-      setIsFetching(false);
-      return businessRef.exists;
+      const snapshot = await db
+        .collection("business")
+        .where("userId", "==", userId)
+        .get();
+      if (snapshot.docs.length > 0) {
+        setBusiness({
+          ...snapshot.docs[0].data(),
+          businessId: snapshot.docs[0].id,
+        });
+        console.log(business);
+      } else {
+        exists = false;
+      }
     } catch (err) {
       console.log(err);
+      exists = false;
     }
     setIsFetching(false);
+    return exists;
   };
 
   const createBusiness = async (userId, businessDetails) => {
     setIsLoading(true);
     try {
-      await db.collection("business").doc(userId).set(businessDetails);
+      await db.collection("business").add({ ...businessDetails, userId });
     } catch (err) {
       console.log(err);
     }

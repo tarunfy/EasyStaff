@@ -1,14 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
-import businessImg from "../assets/images/business.svg";
+import { useHistory } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { AuthContext } from "../contexts/AuthContext";
 import { BusinessContext } from "../contexts/BusinessContext";
-import { useHistory } from "react-router-dom";
+import businessImg from "../assets/images/business.svg";
 
 const Details = () => {
   const [details, setDetails] = useState({
     businessName: "",
-    staffWorkingHours: "08:00",
+    businessEmail: "",
+    businessContactNumber: "",
   });
 
   const history = useHistory();
@@ -16,7 +17,8 @@ const Details = () => {
   const { currentUser } = useContext(AuthContext);
   const { createBusiness, isLoading, fetchBusiness, isFetching } =
     useContext(BusinessContext);
-  const { businessName, staffWorkingHours } = details;
+
+  const { businessName, businessEmail, businessContactNumber } = details;
 
   useEffect(() => {
     async function checkBusiness() {
@@ -42,7 +44,8 @@ const Details = () => {
   const resetForm = () => {
     setDetails({
       businessName: "",
-      staffWorkingHours: "08:00",
+      businessEmail: "",
+      businessContactNumber: "",
     });
   };
 
@@ -52,54 +55,57 @@ const Details = () => {
     <>
       <div className="h-screen bg-secondary-50 flex flex-col justify-center items-center">
         <div className="flex justify-between w-4/5 items-center">
-          <img src={businessImg} alt="img" className="h-96 w-96" />
+          <img src={businessImg} alt="img" className="h-128 w-128" />
           <form
             onSubmit={handleSubmit}
-            className="bg-white w-128 shadow-custom2  p-4 text-black"
+            className="bg-white w-128 shadow-custom2 z-20 p-4 text-black"
           >
             <h1 className="text-3xl text-center mb-3 font-bold text-black  cursor-default">
               Create Your Business
             </h1>
             <input
               type="text"
-              name="businessName"
               autoComplete="off"
+              name="businessName"
+              autoFocus
               required
               value={businessName}
               onChange={handleChange}
               placeholder="Business Name"
-              className="text-xl p-2 border-2 my-4 w-full focus:border-2 focus:border-primary-400 border-gray-300 outline-none"
+              className="text-xl p-2 border-2  w-full focus:border-2 focus:border-quadtiary-400 border-gray-300 outline-none"
             />
-
-            <div className="my-4">
-              <label
-                htmlFor="working-hours"
-                className="text-secondary-300 text-lg"
-              >
-                How many hours does your staff work in a shift?
-              </label>
-              <input
-                type="time"
-                id="working-hours"
-                name="staffWorkingHours"
-                autoComplete="off"
-                required
-                value={staffWorkingHours}
-                onChange={handleChange}
-                placeholder="Staff Working Hours"
-                className="text-xl p-2 border-2 hover:border-primary-500 cursor-text focus:border-2 focus:border-primary-400 w-full border-gray-300 outline-none"
-              />
-            </div>
+            <input
+              type="email"
+              name="businessEmail"
+              autoComplete="off"
+              required
+              value={businessEmail}
+              onChange={handleChange}
+              placeholder="Business Email"
+              className="text-xl p-2 border-2 my-4 w-full focus:border-2 focus:border-quadtiary-400 border-gray-300 outline-none"
+            />
+            <input
+              type="tel"
+              maxLength={10}
+              pattern="[0-9]{10}"
+              name="businessContactNumber"
+              autoComplete="off"
+              required
+              value={businessContactNumber}
+              onChange={handleChange}
+              placeholder="Business Contact Number"
+              className="text-xl p-2 border-2 w-full focus:border-2 focus:border-quadtiary-400 border-gray-300 outline-none"
+            />
             <button
               type="submit"
-              className="w-full bg-primary-500 text-white font-semibold text-xl py-2 px-4 my-4 hover:bg-primary-600 duration-500 transition-colors ease-in-out"
+              className="w-full bg-quadtiary-500 text-white font-semibold text-xl py-2 px-4 my-4 hover:bg-quadtiary-600 duration-500 transition-colors ease-in-out"
             >
               Create Business
             </button>
             <button
               type="reset"
               onClick={resetForm}
-              className="w-full text-primary-500 bg-white border-2 border-primary-500 font-semibold text-xl py-2 px-4 hover:bg-primary-50  duration-500 transition-colors ease-in-outs"
+              className="w-full text-quadtiary-500 bg-white border-2 border-quadtiary-500 font-semibold text-xl py-2 px-4 hover:bg-quadtiary-50  duration-500 transition-colors ease-in-outs"
             >
               Clear
             </button>

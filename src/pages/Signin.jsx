@@ -84,7 +84,11 @@ const Login = () => {
           </button>
           <p className="text-lg font-medium">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-quadtiary-500">
+            <Link
+              to="/signup"
+              onClick={() => setSigninError("")}
+              className="text-quadtiary-500"
+            >
               Sign up
             </Link>
           </p>

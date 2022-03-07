@@ -10,10 +10,12 @@ const Dashboard = () => {
   const { fetchBusiness, isFetching, business } = useContext(BusinessContext);
 
   const history = useHistory();
-  console.log(currentUser);
 
   useEffect(() => {
-    fetchBusiness(currentUser.uid);
+    async function getBusiness() {
+      await fetchBusiness(currentUser.uid);
+    }
+    getBusiness();
   }, []);
 
   if (isFetching) return <Spinner />;
