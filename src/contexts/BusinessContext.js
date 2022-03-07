@@ -44,12 +44,39 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const fetchStaff = async () => {};
+  const fetchStaff = async (businessId) => {
+    setIsFetching(true);
+    let list = [];
+    try {
+      const res = await db
+        .collection("staff")
+        .where("businessId", "==", businessId)
+        .orderBy("timestamp", "desc")
+        .get();
+      res.docs.forEach((doc) => {
+        list.push({ ...doc.data(), id: doc.id });
+      });
+      setStaffList(list);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetching(false);
+  };
 
   const createStaff = async (staffDetails) => {
     setIsLoading(true);
     try {
       await db.collection("staff").add(staffDetails);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const removeStaff = async (docId) => {
+    setIsLoading(true);
+    try {
+      await db.collection("staff").doc(docId).delete();
     } catch (err) {
       console.log(err);
     }
@@ -63,6 +90,7 @@ export const BusinessProvider = ({ children }) => {
         createBusiness,
         fetchStaff,
         createStaff,
+        removeStaff,
         business,
         staffList,
         isFetching,

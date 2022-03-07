@@ -2,14 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Spinner from "../components/Spinner";
 import { Box, Modal } from "@mui/material";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/animations/scale.css";
-import { MdPersonRemoveAlt1, MdEdit } from "react-icons/md";
 import notfound from "../assets/images/404.svg";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import StaffCard from "../components/StaffCard";
 
 const Staff = () => {
   const [addStaffModal, setAddStaffModal] = useState(false);
@@ -31,6 +28,8 @@ const Staff = () => {
     isFetching,
     business,
     fetchBusiness,
+    fetchStaff,
+    removeStaff,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -43,13 +42,17 @@ const Staff = () => {
   }, []);
 
   useEffect(() => {
-    console.log(staffList);
-  }, [staffList]);
+    async function getStaff() {
+      await fetchStaff(business.businessId);
+    }
+    getStaff();
+  }, []);
 
   if (business == null) history.push("/add-business");
 
-  const openUpdateStaffModal = () => {
+  const openUpdateStaffModal = (staffDocId) => {
     setUpdateStaffModal(true);
+    console.log("update existing staff...", staffDocId);
   };
   const closeUpdateStaffModal = () => {
     setUpdateStaffModal(false);
@@ -73,17 +76,31 @@ const Staff = () => {
       email,
       address,
       businessId: business.businessId,
+      timestamp: new Date(),
     });
 
     addStaffModal ? closeAddStaffModal() : closeUpdateStaffModal();
+    fetchStaff(business.businessId);
+    clearModal();
   };
 
-  const updateExistingStaff = () => {
-    console.log("update existing staff...");
+  const updateExistingStaff = (staffDocId) => {
+    console.log("update existing staff...", staffDocId);
   };
 
-  const handleRemove = () => {
-    console.log("removing staff...");
+  const handleRemove = async (staffDocId) => {
+    await removeStaff(staffDocId);
+    await fetchStaff(business.businessId);
+  };
+
+  const clearModal = () => {
+    setAddress("");
+    setDesignation("");
+    setPhoneNumber("");
+    setManagerName("");
+    setEmail("");
+    setSalary("");
+    setFullName("");
   };
 
   if (isFetching || isLoading) return <Spinner />;
@@ -101,51 +118,19 @@ const Staff = () => {
             Add
           </button>
         </div>
-        {staffList ? (
-          <div className="grid grid-cols-3 gap-x-4 gap-y-6 w-full">
-            <div className="w-full bg-slate-50 shadow-custom p-4 rounded-sm">
-              <h1 className="font-bold text-3xl mb-4">Jhon Doe</h1>
-              <p className="font-medium text-xl text-slate-700 mb-1">
-                Chief Technology Officer
-              </p>
-              <div className="flex justify-start items-center space-x-2 mb-4">
-                <p className="font-semibold text-base text-slate-700">
-                  8345710284
-                </p>
-                <p className="font-semibold text-base text-slate-700">
-                  jhondoe@gmail.com
-                </p>
-              </div>
-              <div className="flex justify-end items-center space-x-4">
-                <Tippy
-                  interactive={true}
-                  animation="scale"
-                  content="Edit staff"
-                >
-                  <div
-                    onClick={openUpdateStaffModal}
-                    className="p-2 border-[1px] hover:cursor-pointer border-zinc-800 hover:text-teal-500 hover:border-[1px] hover:border-teal-500 transition-all duration-300 ease-in-out"
-                  >
-                    <MdEdit className="h-6 w-6" />
-                  </div>
-                </Tippy>
-                <Tippy
-                  interactive={true}
-                  animation="scale"
-                  content="Remove staff"
-                >
-                  <div
-                    onClick={handleRemove}
-                    className="p-2 border-[1px] hover:cursor-pointer border-zinc-800 hover:text-red-500 hover:border-[1px] hover:border-red-500 transition-all duration-300 ease-in-out"
-                  >
-                    <MdPersonRemoveAlt1 className="h-6 w-6" />
-                  </div>
-                </Tippy>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="flex justify-center flex-col items-center">
+        <div className="grid grid-cols-3 gap-x-4 gap-y-6 w-full">
+          {staffList &&
+            staffList.map((staff, index) => (
+              <StaffCard
+                key={index}
+                staff={staff}
+                openUpdateStaffModal={openUpdateStaffModal}
+                handleRemove={handleRemove}
+              />
+            ))}
+        </div>
+        {staffList.length < 1 && (
+          <div className="flex justify-center items-center flex-col">
             <img src={notfound} alt="No staff found" className="h-128 w-128" />
             <h1 className="font-bold text-2xl">No staff found</h1>
           </div>
