@@ -4,9 +4,10 @@ import { db } from "../services/firebase";
 export const BusinessContext = createContext(null);
 
 export const BusinessProvider = ({ children }) => {
-  const [isFetching, setIsFetching] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
   const [business, setBusiness] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [staffList, setStaffList] = useState(null);
 
   const fetchBusiness = async (userId) => {
     setIsFetching(true);
@@ -43,15 +44,30 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const fetchStaff = async () => {};
+
+  const createStaff = async (staffDetails) => {
+    setIsLoading(true);
+    try {
+      await db.collection("staff").add(staffDetails);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <BusinessContext.Provider
       value={{
-        business,
         fetchBusiness,
+        createBusiness,
+        fetchStaff,
+        createStaff,
+        business,
+        staffList,
         isFetching,
         setBusiness,
         isLoading,
-        createBusiness,
       }}
     >
       {children}
