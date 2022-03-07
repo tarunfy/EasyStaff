@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
-import Verify from "./pages/Verify";
+import Signup from "./pages/Signup";
 import Details from "./pages/Details";
 import Profile from "./pages/Profile";
 import Staff from "./pages/Staff";
@@ -24,37 +24,37 @@ function App() {
         />
         <Route
           exact
-          path="/login"
+          path="/signin"
           render={(props) =>
-            !currentUser ? <Login {...props} /> : <Redirect to="/dashboard" />
+            !currentUser ? <Signin {...props} /> : <Redirect to="/dashboard" />
           }
         />
         <Route
           exact
-          path="/verify"
+          path="/signup"
           render={(props) =>
-            !currentUser ? <Verify {...props} /> : <Redirect to="/dashboard" />
+            !currentUser ? <Signup {...props} /> : <Redirect to="/dashboard" />
           }
         />
         <Route
           exact
           path="/dashboard"
           render={(props) =>
-            currentUser ? <Dashboard {...props} /> : <Redirect to="/login" />
+            currentUser ? <Dashboard {...props} /> : <Redirect to="/signin" />
           }
         />
         <Route
           exact
           path="/add-business"
           render={(props) =>
-            currentUser ? <Details {...props} /> : <Redirect to="/login" />
+            currentUser ? <Details {...props} /> : <Redirect to="/signin" />
           }
         />
         <Route
           exact
           path="/profile"
           render={(props) =>
-            currentUser ? <Profile {...props} /> : <Redirect to="/login" />
+            currentUser ? <Profile {...props} /> : <Redirect to="/signin" />
           }
         />
         <Route

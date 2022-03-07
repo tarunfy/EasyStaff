@@ -1,33 +1,28 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import svg from "../assets/images/login.svg";
-import firebase from "firebase/app";
 import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [phoneNumber, setPhoneNumber] = useState("6046214579");
-  const [recaptchaVerified, setRecaptchaVerified] = useState(false);
-  const { phoneAuth, isLoading, phoneAuthError, setPhoneAuthError } =
-    useContext(AuthContext);
-  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  useEffect(() => {
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        callback: function (response) {
-          setRecaptchaVerified(true);
-        },
-      }
-    );
-    window.recaptchaVerifier.verify();
-  }, []);
+  const { isLoading, signupError, signup, setSignupError } =
+    useContext(AuthContext);
+
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setPhoneAuthError("");
-    const isSuccess = await phoneAuth("+1" + phoneNumber);
-    if (isSuccess) history.push("/verify");
+    setSignupError("");
+    if (password === confirmPassword) {
+      const res = await signup(email, password);
+      if (res) history.push("/dashboard");
+    } else {
+      setSignupError("Passwords do not match");
+    }
   };
 
   return (
@@ -36,40 +31,47 @@ const Login = () => {
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop
         </h1>
-        <h1 className="text-gray-800 text-2xl font-medium">
-          Enter your mobile number to continue
-        </h1>
-        <form onSubmit={handleSubmit} className="mt-5 flex flex-col">
-          <div className="flex items-center mb-5">
-            <h1 className="text-lg font-normal p-3 rounded-sm mr-2 bg-white border-gray border-2">
-              +1
-            </h1>
-            <input
-              type="tel"
-              maxLength="10"
-              required
-              autoFocus
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="p-3 w-48 font-normal text-lg border-2 border-gray focus:outline-quadtiary-400"
-            />
-          </div>
-          <div id="recaptcha-container"></div>
-          {phoneAuthError && (
+        <form onSubmit={handleSubmit} className="mt-5 w-2/3">
+          <input
+            type="email"
+            required
+            autoFocus
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-3 mb-5 w-full font-normal text-lg border-2 border-gray focus:outline-quadtiary-400"
+          />
+          <input
+            type="password"
+            required
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-3 w-full mb-5 font-normal text-lg border-2 border-gray focus:outline-quadtiary-400"
+          />
+          <input
+            type="password"
+            required
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="p-3 w-full font-normal text-lg border-2 border-gray focus:outline-quadtiary-400"
+          />
+          {signupError && (
             <div className="mt-5 text-red-500 text-base max-w-xs">
-              {phoneAuthError}
+              {signupError}
             </div>
           )}
           <button
             type="submit"
-            disabled={!phoneNumber || !recaptchaVerified || isLoading}
+            disabled={!email || !password || !confirmPassword || isLoading}
             className={`${
-              !phoneNumber || !recaptchaVerified || isLoading
-                ? "text-white w-fit bg-quadtiary-300 mt-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
-                : "mt-5 w-fit bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+              !email || !password || !confirmPassword || isLoading
+                ? "text-white block w-fit bg-quadtiary-300 my-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
+                : "my-5 w-fit block bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
             }`}
           >
-            {isLoading && !phoneAuthError ? (
+            {isLoading && !signupError ? (
               <div className="flex justify-center items-center">
                 <svg
                   role="status"
@@ -87,12 +89,18 @@ const Login = () => {
                     fill="currentFill"
                   />
                 </svg>
-                <p>Sending...</p>
+                <p>Signing Up...</p>
               </div>
             ) : (
-              "Send OTP"
+              "Sign Up"
             )}
           </button>
+          <p className="text-lg font-medium">
+            Have an account?{" "}
+            <Link to="/signin" className="text-quadtiary-500">
+              Log In
+            </Link>
+          </p>
         </form>
       </div>
       <img src={svg} alt="img" className="h-128 w-128" />

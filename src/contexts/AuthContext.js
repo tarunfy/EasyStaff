@@ -7,9 +7,8 @@ export const AuthProvider = ({ children }) => {
   const [isFetchingUser, setIsFetchingUser] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [confirmationResult, setConfirmationResult] = useState(null);
-  const [phoneAuthError, setPhoneAuthError] = useState("");
-  const [verifyCodeError, setVerifyCodeError] = useState("");
+  const [signupError, setSignupError] = useState("");
+  const [signinError, setSigninError] = useState("");
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -22,18 +21,15 @@ export const AuthProvider = ({ children }) => {
     });
   }, []);
 
-  const phoneAuth = async (number) => {
+  const signin = async (email, password) => {
     setIsLoading(true);
     let result = true;
     try {
-      const confirmationResult = await auth.signInWithPhoneNumber(
-        number,
-        window.recaptchaVerifier
-      );
-      setConfirmationResult(confirmationResult);
+      const res = await auth.signInWithEmailAndPassword(email, password);
+      console.log(res.user);
     } catch (err) {
       console.log(err);
-      setPhoneAuthError("Phone number isn't valid or too short");
+      setSigninError(err.message);
       result = false;
     }
     setIsLoading(false);
@@ -41,12 +37,13 @@ export const AuthProvider = ({ children }) => {
     return result;
   };
 
-  const verifyCode = async (code) => {
+  const signup = async (email, password) => {
     setIsLoading(true);
     try {
-      await confirmationResult.confirm(code);
+      const res = await auth.createUserWithEmailAndPassword(email, password);
+      console.log(res.user);
     } catch (err) {
-      setVerifyCodeError("The OTP is invalid");
+      setSignupError(err.message);
     }
     setIsLoading(false);
   };
@@ -59,16 +56,16 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         setCurrentUser,
-        setVerifyCodeError,
-        verifyCodeError,
-        phoneAuthError,
-        setPhoneAuthError,
+        signinError,
+        setSigninError,
+        signupError,
+        setSignupError,
         currentUser,
         logout,
         isLoading,
         setIsLoading,
-        phoneAuth,
-        verifyCode,
+        signin,
+        signup,
       }}
     >
       {!isFetchingUser && children}

@@ -1,18 +1,23 @@
 import React, { useState, useContext } from "react";
 import svg from "../assets/images/login.svg";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Verify = () => {
-  const [code, setCode] = useState("");
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const { verifyCode, verifyCodeError, setVerifyCodeError, isLoading } =
+  const { isLoading, signinError, signin, setSigninError } =
     useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setVerifyCodeError("");
-    verifyCode(code);
+    setSigninError("");
+    const res = await signin(email, password);
+    if (res) history.push("/dashboard");
   };
 
   return (
@@ -21,43 +26,39 @@ const Verify = () => {
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop
         </h1>
-        <h1 className="text-gray-800 text-xl font-medium">
-          OTP has been sent{" "}
-          <Link to="/login" className="ml-1 font-medium text-quadtiary-500">
-            Change Number
-          </Link>
-        </h1>
-        <form onSubmit={handleSubmit} className="mt-5">
-          <div>
-            <input
-              type="tel"
-              required
-              autoFocus
-              pattern="[0-9]{6}"
-              maxLength={"6"}
-              className="p-4 border-2 border-gray font-normal text-lg  focus:outline-quadtiary-400"
-              placeholder="OTP"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-            />
-          </div>
-          {verifyCodeError && (
-            <>
-              <p className="mt-5 text-red-500 text-base max-w-xs">
-                {verifyCodeError}
-              </p>
-            </>
+        <form onSubmit={handleSubmit} className="mt-5  w-2/3">
+          <input
+            type="email"
+            required
+            autoFocus
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-3 mb-5 w-full font-normal text-lg border-2 border-gray focus:outline-quadtiary-400"
+          />
+          <input
+            type="password"
+            required
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-3 w-full  font-normal text-lg border-2 border-gray focus:outline-quadtiary-400"
+          />
+          {signinError && (
+            <div className="mt-5 text-red-500 text-base max-w-xs">
+              {signinError}
+            </div>
           )}
           <button
             type="submit"
-            disabled={!code || isLoading}
+            disabled={!email || !password || isLoading}
             className={`${
-              !code || isLoading
-                ? "text-white w-fit bg-quadtiary-300 mt-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
-                : "mt-5 w-fit bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+              !email || !password || isLoading
+                ? "text-white block w-fit bg-quadtiary-300 my-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
+                : "my-5 w-fit block bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
             }`}
           >
-            {isLoading ? (
+            {isLoading && !signinError ? (
               <div className="flex justify-center items-center">
                 <svg
                   role="status"
@@ -75,12 +76,18 @@ const Verify = () => {
                     fill="currentFill"
                   />
                 </svg>
-                <p>Verifying...</p>
+                <p>Logging...</p>
               </div>
             ) : (
-              "Verify"
+              "Log In"
             )}
           </button>
+          <p className="text-lg font-medium">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-quadtiary-500">
+              Sign up
+            </Link>
+          </p>
         </form>
       </div>
       <img src={svg} alt="img" className="h-128 w-128" />
@@ -88,4 +95,4 @@ const Verify = () => {
   );
 };
 
-export default Verify;
+export default Login;
