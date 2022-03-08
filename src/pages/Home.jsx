@@ -25,7 +25,7 @@ const Home = () => {
           salary calculation, <br /> salary payment and more.
         </p>
         <Link
-          to="/login"
+          to="/signin"
           className="uppercase z-30 relative font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all mt-10 text-2xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-3"
           id="cta-btn"
         >
