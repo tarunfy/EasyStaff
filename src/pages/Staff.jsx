@@ -54,6 +54,7 @@ const Staff = () => {
   };
   const closeAddStaffModal = () => {
     setAddStaffModal(false);
+    clearModal();
   };
 
   const addNewStaff = async (e) => {
@@ -112,7 +113,6 @@ const Staff = () => {
               <StaffCard
                 key={index}
                 staff={staff}
-                clearModal={clearModal}
                 handleRemove={handleRemove}
                 business={business}
               />

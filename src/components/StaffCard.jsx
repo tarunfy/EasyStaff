@@ -7,7 +7,7 @@ import { Modal } from "@mui/material";
 import { Box } from "@mui/system";
 import { BusinessContext } from "../contexts/BusinessContext";
 
-const StaffCard = ({ staff, handleRemove, clearModal, business }) => {
+const StaffCard = ({ staff, handleRemove, business }) => {
   const [updateStaffModal, setUpdateStaffModal] = useState(false);
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -24,6 +24,7 @@ const StaffCard = ({ staff, handleRemove, clearModal, business }) => {
   };
   const closeUpdateStaffModal = () => {
     setUpdateStaffModal(false);
+    clearModal();
   };
 
   const updateExistingStaff = async (e) => {
@@ -40,6 +41,16 @@ const StaffCard = ({ staff, handleRemove, clearModal, business }) => {
     await fetchStaff(business.businessId);
     clearModal();
     closeUpdateStaffModal();
+  };
+
+  const clearModal = () => {
+    setAddress("");
+    setDesignation("");
+    setPhoneNumber("");
+    setManagerName("");
+    setEmail("");
+    setSalary("");
+    setFullName("");
   };
 
   return (
