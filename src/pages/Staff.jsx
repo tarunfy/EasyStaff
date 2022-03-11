@@ -27,7 +27,7 @@ const Staff = () => {
     isFetching,
     business,
     fetchBusiness,
-    fetchStaff,
+    fetchStaffs,
     removeStaff,
   } = useContext(BusinessContext);
 
@@ -42,7 +42,7 @@ const Staff = () => {
 
   useEffect(() => {
     async function getStaff() {
-      await fetchStaff(business.businessId);
+      await fetchStaffs(business.businessId);
     }
     getStaff();
   }, []);
@@ -73,13 +73,13 @@ const Staff = () => {
     });
 
     closeAddStaffModal();
-    fetchStaff(business.businessId);
+    fetchStaffs(business.businessId);
     clearModal();
   };
 
   const handleRemove = async (staffDocId) => {
     await removeStaff(staffDocId);
-    await fetchStaff(business.businessId);
+    await fetchStaffs(business.businessId);
   };
 
   const clearModal = () => {

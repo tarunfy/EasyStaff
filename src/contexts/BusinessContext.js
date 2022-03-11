@@ -44,7 +44,7 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const fetchStaff = async (businessId) => {
+  const fetchStaffs = async (businessId) => {
     setIsFetching(true);
     let list = [];
     try {
@@ -93,15 +93,27 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const getStaff = async (docId) => {
+    let data = null;
+    try {
+      const doc = await db.collection("staff").doc(docId).get();
+      data = doc.data();
+    } catch (err) {
+      console.log(err);
+    }
+    return data;
+  };
+
   return (
     <BusinessContext.Provider
       value={{
         fetchBusiness,
         createBusiness,
-        fetchStaff,
+        fetchStaffs,
         createStaff,
         removeStaff,
         updateStaff,
+        getStaff,
         business,
         staffList,
         setBusiness,

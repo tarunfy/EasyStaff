@@ -17,9 +17,17 @@ const StaffCard = ({ staff, handleRemove, business }) => {
   const [salary, setSalary] = useState("");
   const [email, setEmail] = useState("");
 
-  const { fetchStaff, updateStaff } = useContext(BusinessContext);
+  const { fetchStaffs, updateStaff, getStaff } = useContext(BusinessContext);
 
-  const openUpdateStaffModal = () => {
+  const openUpdateStaffModal = async () => {
+    const data = await getStaff(staff.id);
+    setFullName(data.fullName);
+    setDesignation(data.designation);
+    setSalary(data.salary);
+    setAddress(data.address);
+    setManagerName(data.managerName);
+    setEmail(data.email);
+    setPhoneNumber(data.phoneNumber);
     setUpdateStaffModal(true);
   };
   const closeUpdateStaffModal = () => {
@@ -38,7 +46,7 @@ const StaffCard = ({ staff, handleRemove, business }) => {
       email,
       address,
     });
-    await fetchStaff(business.businessId);
+    await fetchStaffs(business.businessId);
     clearModal();
     closeUpdateStaffModal();
   };
