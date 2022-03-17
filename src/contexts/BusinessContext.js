@@ -8,6 +8,7 @@ export const BusinessProvider = ({ children }) => {
   const [business, setBusiness] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [staffList, setStaffList] = useState(null);
+  const [salaryReports, setSalaryReports] = useState(null);
 
   const fetchBusiness = async (userId) => {
     setIsFetching(true);
@@ -104,6 +105,24 @@ export const BusinessProvider = ({ children }) => {
     return data;
   };
 
+  const fetchSalaryReports = async (userId) => {
+    setIsFetching(true);
+    let reports = [];
+    try {
+      const res = await db
+        .collection("salary")
+        .where("userId", "==", userId)
+        .get();
+      res.docs.forEach((doc) => {
+        reports.push(doc.data());
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    setSalaryReports(reports);
+    setIsFetching(false);
+  };
+
   return (
     <BusinessContext.Provider
       value={{
@@ -121,6 +140,8 @@ export const BusinessProvider = ({ children }) => {
         isFetching,
         setBusiness,
         isLoading,
+        salaryReports,
+        fetchSalaryReports,
       }}
     >
       {children}
