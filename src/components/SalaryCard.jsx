@@ -114,7 +114,7 @@ const SalaryCard = ({ report, deleteSalaryReport, getSalaryReports }) => {
       >
         <Box className="px-6 py-3 bg-slate-50 text-center border-none outline-none focus:outline-none ">
           <h1 className="text-[2rem] font-semibold">Update Salary</h1>
-          <p className="text-sm font-normal text-zinc-500">
+          <p className="text-sm font-normal text-zinc-400">
             Salary will be counted from 1 to 1, ex: 1st Jan - 1st Feb
           </p>
           <hr className="bg-slate-400 h-[2px] w-full mb-4" />
