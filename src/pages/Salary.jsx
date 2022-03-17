@@ -27,16 +27,22 @@ const Salary = () => {
   const [paymentType, setPaymentType] = useState("Regular");
   const [addSalaryModal, setAddSalaryModal] = useState(false);
 
-  const { salaryReports, isFetching, fetchSalaryReports } =
-    useContext(BusinessContext);
+  const {
+    salaryReports,
+    isFetching,
+    fetchSalaryReports,
+    addNewSalaryReport,
+    isLoading,
+    deleteSalaryReport,
+  } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    async function getSalaryReports() {
-      await fetchSalaryReports(currentUser.uid);
-    }
+  async function getSalaryReports() {
+    await fetchSalaryReports(currentUser.uid);
+  }
 
+  useEffect(() => {
     getSalaryReports();
   }, []);
 
@@ -47,10 +53,17 @@ const Salary = () => {
     setAddSalaryModal(false);
     clearModal();
   };
-  const addNewSalary = (e) => {
+  const addNewSalary = async (e) => {
     e.preventDefault();
-    console.log(staffName, amount, paymentType);
+    await addNewSalaryReport({
+      staffName,
+      amount,
+      paymentType,
+      createdAt: Date.now(),
+      userId: currentUser.uid,
+    });
     closeAddSalaryModal();
+    getSalaryReports();
   };
 
   const clearModal = () => {
@@ -66,7 +79,12 @@ const Salary = () => {
     setPaymentType(e.target.value);
   };
 
-  if (isFetching) return <Spinner />;
+  const handleDeleteReport = async (reportId) => {
+    await deleteSalaryReport(reportId);
+    getSalaryReports();
+  };
+
+  if (isFetching || isLoading) return <Spinner />;
 
   return (
     <>
@@ -174,7 +192,10 @@ const Salary = () => {
                           interactive={true}
                           animation="scale"
                         >
-                          <button className="p-1 border-[1px]  border-zinc-800 hover:text-red-500 hover:border-[1px] hover:border-red-500 transition-all duration-300 ease-in-out">
+                          <button
+                            onClick={() => handleDeleteReport(report.id)}
+                            className="p-1 border-[1px]  border-zinc-800 hover:text-red-500 hover:border-[1px] hover:border-red-500 transition-all duration-300 ease-in-out"
+                          >
                             <RemoveCircleOutlineIcon />
                           </button>
                         </Tippy>

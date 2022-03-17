@@ -114,13 +114,35 @@ export const BusinessProvider = ({ children }) => {
         .where("userId", "==", userId)
         .get();
       res.docs.forEach((doc) => {
-        reports.push(doc.data());
+        reports.push({ ...doc.data(), id: doc.id });
       });
     } catch (err) {
       console.log(err);
     }
-    setSalaryReports(reports);
+    if (reports.length > 0) {
+      setSalaryReports(reports);
+    }
     setIsFetching(false);
+  };
+
+  const addNewSalaryReport = async (report) => {
+    setIsLoading(true);
+    try {
+      await db.collection("salary").add(report);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const deleteSalaryReport = async (reportId) => {
+    setIsLoading(true);
+    try {
+      await db.collection("salary").doc(reportId).delete();
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -142,6 +164,8 @@ export const BusinessProvider = ({ children }) => {
         isLoading,
         salaryReports,
         fetchSalaryReports,
+        addNewSalaryReport,
+        deleteSalaryReport,
       }}
     >
       {children}
