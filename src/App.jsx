@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Signup from "./pages/Signup";
 import Details from "./pages/Details";
 import Profile from "./pages/Profile";
+import Salary from "./pages/Salary";
 import Staff from "./pages/Staff";
 import { AuthContext } from "./contexts/AuthContext";
 
@@ -62,6 +63,13 @@ function App() {
           path="/staff"
           render={(props) =>
             currentUser ? <Staff {...props} /> : <Redirect to="/signin" />
+          }
+        />
+        <Route
+          exact
+          path="/salary"
+          render={(props) =>
+            currentUser ? <Salary {...props} /> : <Redirect to="/signin" />
           }
         />
       </Switch>
