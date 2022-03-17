@@ -57,6 +57,8 @@ export const AuthProvider = ({ children }) => {
     setStaffList(null);
   };
 
+  if (isFetchingUser) return <h1>Loading...</h1>;
+
   return (
     <AuthContext.Provider
       value={{

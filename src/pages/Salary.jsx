@@ -12,6 +12,7 @@ import {
   Box,
   Modal,
 } from "@mui/material";
+import notfound from "../assets/images/404.svg";
 import Spinner from "../components/Spinner";
 import Sidebar from "../components/Sidebar/Sidebar";
 import SalaryCard from "../components/SalaryCard";
@@ -150,11 +151,16 @@ const Salary = () => {
               </Table>
             </TableContainer>
           ) : (
-            <>
-              <p className="text-2xl font-semibold">
-                No salary report available, please add a report.
-              </p>
-            </>
+            <div className="flex justify-center items-center flex-col">
+              <img
+                src={notfound}
+                alt="No staff found"
+                className="h-128 w-128"
+              />
+              <h1 className="font-bold text-2xl">
+                No salary report found, please add one.
+              </h1>
+            </div>
           )}
         </div>
       </div>
@@ -187,7 +193,7 @@ const Salary = () => {
                 <option value="" disabled selected>
                   Staff Name
                 </option>
-                {staffList.length > 0 &&
+                {staffList?.length > 0 &&
                   staffList.map((staff, index) => (
                     <option value={staff.fullName} key={index}>
                       {staff.fullName}

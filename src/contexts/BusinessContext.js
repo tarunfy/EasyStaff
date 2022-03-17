@@ -121,6 +121,8 @@ export const BusinessProvider = ({ children }) => {
     }
     if (reports.length > 0) {
       setSalaryReports(reports);
+    } else {
+      setSalaryReports(null);
     }
     setIsFetching(false);
   };
