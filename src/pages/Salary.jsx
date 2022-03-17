@@ -14,12 +14,7 @@ import {
 } from "@mui/material";
 import Spinner from "../components/Spinner";
 import Sidebar from "../components/Sidebar/Sidebar";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import EditIcon from "@mui/icons-material/Edit";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/animations/scale.css";
-import moment from "moment";
+import SalaryCard from "../components/SalaryCard";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");
@@ -34,6 +29,7 @@ const Salary = () => {
     addNewSalaryReport,
     isLoading,
     deleteSalaryReport,
+    staffList,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -77,11 +73,6 @@ const Salary = () => {
       return;
     }
     setPaymentType(e.target.value);
-  };
-
-  const handleDeleteReport = async (reportId) => {
-    await deleteSalaryReport(reportId);
-    getSalaryReports();
   };
 
   if (isFetching || isLoading) return <Spinner />;
@@ -148,59 +139,12 @@ const Salary = () => {
                 </TableHead>
                 <TableBody>
                   {salaryReports.map((report, index) => (
-                    <TableRow
+                    <SalaryCard
+                      report={report}
                       key={index}
-                      sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
-                      }}
-                    >
-                      <TableCell
-                        sx={{ fontSize: "1.05rem", fontWeight: "500" }}
-                      >
-                        {report.staffName}
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        sx={{ fontSize: "1.05rem", fontWeight: "500" }}
-                      >
-                        {report.paymentType}
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        sx={{ fontSize: "1.05rem", fontWeight: "500" }}
-                      >
-                        {report.amount}
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        sx={{ fontSize: "1.05rem", fontWeight: "500" }}
-                      >
-                        {moment(report.createdAt).format("MM/DD/YYYY")}
-                      </TableCell>
-                      <TableCell align="right">
-                        <Tippy
-                          content="Edit report"
-                          interactive={true}
-                          animation="scale"
-                        >
-                          <button className="p-1 border-[1px] border-zinc-800 hover:text-teal-500 hover:border-[1px] hover:border-teal-500 transition-all duration-300 ease-in-out mr-1">
-                            <EditIcon />
-                          </button>
-                        </Tippy>
-                        <Tippy
-                          content="Delete report"
-                          interactive={true}
-                          animation="scale"
-                        >
-                          <button
-                            onClick={() => handleDeleteReport(report.id)}
-                            className="p-1 border-[1px]  border-zinc-800 hover:text-red-500 hover:border-[1px] hover:border-red-500 transition-all duration-300 ease-in-out"
-                          >
-                            <RemoveCircleOutlineIcon />
-                          </button>
-                        </Tippy>
-                      </TableCell>
-                    </TableRow>
+                      deleteSalaryReport={deleteSalaryReport}
+                      getSalaryReports={getSalaryReports}
+                    />
                   ))}
                 </TableBody>
               </Table>
@@ -231,15 +175,27 @@ const Salary = () => {
             onSubmit={addNewSalary}
             className="flex flex-col justify-start items-start space-y-3"
           >
-            <input
-              type="text"
-              value={staffName}
-              required
-              autoComplete="off"
-              onChange={(e) => setStaffName(e.target.value)}
-              placeholder="Staff Name"
-              className="p-2 w-full text-lg focus:outline-quadtiary-400 border-2 border-gray"
-            />
+            <div className="w-full flex justify-start flex-col items-start">
+              <select
+                name="staffs"
+                id="staffs"
+                value={staffName}
+                onChange={(e) => setStaffName(e.target.value)}
+                required
+                className="p-2 border-2 w-full text-lg border-gray focus:outline-quadtiary-400"
+              >
+                <option value="" disabled selected>
+                  Staff Name
+                </option>
+                {staffList.length > 0 &&
+                  staffList.map((staff, index) => (
+                    <option value={staff.fullName} key={index}>
+                      {staff.fullName}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
             <input
               type="number"
               value={amount}

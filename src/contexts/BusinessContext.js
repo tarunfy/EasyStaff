@@ -145,12 +145,34 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const getSalaryReport = async (reportId) => {
+    let data = null;
+    try {
+      const doc = await db.collection("salary").doc(reportId).get();
+      data = doc.data();
+    } catch (err) {
+      console.log(err);
+    }
+    return data;
+  };
+
+  const updateSalaryReport = async (reportId, details) => {
+    setIsLoading(true);
+    try {
+      await db.collection("salary").doc(reportId).update(details);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <BusinessContext.Provider
       value={{
         fetchBusiness,
         createBusiness,
         fetchStaffs,
+        updateSalaryReport,
         createStaff,
         removeStaff,
         updateStaff,
@@ -166,6 +188,7 @@ export const BusinessProvider = ({ children }) => {
         fetchSalaryReports,
         addNewSalaryReport,
         deleteSalaryReport,
+        getSalaryReport,
       }}
     >
       {children}
