@@ -19,7 +19,7 @@ const Home = () => {
           </span>
           .
         </h1>
-        <p className="text-center cursor-default leading-10 text-2xl z-30 font-semibold text-gray-700 mt-10">
+        <p className="text-center cursor-default leading-8 text-xl z-30 font-light text-gray-700 mt-10">
           EasyStaff is a free staff attendance and payroll management app that
           enables employers <br /> to easily manage their staff with automatic
           salary calculation, <br /> salary payment and more.

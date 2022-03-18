@@ -26,7 +26,7 @@ const Login = () => {
   };
 
   return (
-    <div className="pattern-container flex justify-around items-center bg-slate-100  bg-gradient-to-br h-screen w-full">
+    <div className="pattern-container flex justify-around items-center bg-slate-100  bg-gradient-to-br h-screen">
       <div>
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop

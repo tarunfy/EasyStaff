@@ -26,7 +26,7 @@ const Login = () => {
         <h1 className="font-sans font-bold  text-5xl text-left mb-5">
           Manage staff easily from <br /> your desktop
         </h1>
-        <form onSubmit={handleSubmit} className="mt-5  w-2/3">
+        <form onSubmit={handleSubmit} className="mt-5 w-2/3">
           <input
             type="email"
             required

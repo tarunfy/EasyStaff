@@ -155,6 +155,7 @@ export const BusinessProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
+
     return data;
   };
 

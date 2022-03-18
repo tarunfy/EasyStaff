@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { auth } from "../services/firebase";
 import { BusinessContext } from "./BusinessContext";
+import Spinner from "../components/Spinner";
 
 export const AuthContext = createContext(null);
 
@@ -57,7 +58,7 @@ export const AuthProvider = ({ children }) => {
     setStaffList(null);
   };
 
-  if (isFetchingUser) return <h1>Loading...</h1>;
+  if (isFetchingUser) return <Spinner />;
 
   return (
     <AuthContext.Provider
