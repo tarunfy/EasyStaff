@@ -3,11 +3,16 @@
 @tailwind utilities;
 
 @import url("http://fonts.cdnfonts.com/css/sofia-pro");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
 ::-moz-selection {
   /* Code for Firefox */
   color: white;
   background: #4c00ff;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
 }
 
 ::selection {

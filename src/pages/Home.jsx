@@ -8,7 +8,7 @@ const Home = () => {
       <div id="blurry-gradient"></div>
       <div id="blurry-gradient-2"></div>
       <div className="bg-slate-50 h-screen main flex flex-col justify-center items-center px-10">
-        <h1 className="text-8xl text-center z-30 font-bold cursor-default">
+        <h1 className="text-8xl font-sans text-center z-30 font-bold cursor-default">
           Track Staff's{" "}
           <span className="hover:text-quadtiary-500 inline-block transform hover:-translate-y-2 transition duration-200 ease-in-out">
             Attendence

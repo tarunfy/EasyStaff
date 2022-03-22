@@ -99,7 +99,7 @@ const Staff = () => {
       <Sidebar />
       <div className="h-screen pl-64 w-full py-7 pr-7 bg-slate-50 flex justify-start flex-col overflow-y-scroll">
         <div className="flex justify-between items-center w-full  mb-10">
-          <h1 className="text-6xl font-black">Your Staff</h1>
+          <h1 className="text-6xl font-sans font-black">Your Staff</h1>
           <button
             onClick={openAddStaffModal}
             className="uppercase font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
@@ -201,7 +201,7 @@ const Staff = () => {
             <div className="flex justify-end items-center space-x-3">
               <button
                 onClick={closeAddStaffModal}
-                className="font-semibold text-red-500 border-red-500 border-[1px]  duration-300 ease-in-out hover:shadow-xl transition-all  text-xl   px-6 py-2"
+                className="font-semibold text-red-500 border-red-500 border-[1px] hover:bg-red-500 hover:text-slate-50 text-xl duration-300 ease-in-out transition-all  px-6 py-2"
               >
                 Cancel
               </button>

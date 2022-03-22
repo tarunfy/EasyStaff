@@ -171,7 +171,7 @@ const SalaryCard = ({ report, deleteSalaryReport, getSalaryReports }) => {
             <div className="flex justify-end items-center space-x-3">
               <button
                 onClick={closeUpdateSalaryModal}
-                className="font-semibold text-red-500 border-red-500 border-[1px]  duration-300 ease-in-out hover:shadow-xl transition-all  text-xl   px-6 py-2"
+                className="font-semibold text-red-500 border-red-500 border-[1px]  hover:bg-red-500 hover:text-slate-50 text-xl duration-300 ease-in-out transition-all  text-xl   px-6 py-2"
               >
                 Cancel
               </button>
