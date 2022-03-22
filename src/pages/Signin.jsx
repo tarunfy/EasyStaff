@@ -27,7 +27,11 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="mt-5 w-128 shadow-custom3 relative bg-white border-[2px] border-black px-6 py-8"
       >
-        <img src={svg} alt="img" className="absolute -left-80 top-0 h-128" />
+        <img
+          src={svg}
+          alt="img"
+          className="absolute -left-[28rem] -top-14 h-128"
+        />
         <img
           src={cube}
           alt="img"
