@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import svg from "../assets/images/human.svg";
+import cube from "../assets/images/cube.svg";
 import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -21,15 +22,26 @@ const Login = () => {
   };
 
   return (
-    <div className=" flex justify-center items-center bg-slate-50  bg-gradient-to-br h-screen w-full">
+    <div className="flex justify-center items-center bg-slate-50  bg-gradient-to-br h-screen w-full">
       <form
         onSubmit={handleSubmit}
         className="mt-5 w-128 shadow-custom3 relative bg-white border-[2px] border-black px-6 py-8"
       >
+        <img src={svg} alt="img" className="absolute -left-80 top-0 h-128" />
         <img
-          src={svg}
+          src={cube}
           alt="img"
-          className="human absolute -left-80 top-0 h-128"
+          className="float absolute -right-80 top-0 h-14"
+        />
+        <img
+          src={cube}
+          alt="img"
+          className="float absolute right-60 -top-48 h-14"
+        />
+        <img
+          src={cube}
+          alt="img"
+          className="float absolute -right-36 -bottom-48 h-14"
         />
         <h1 className="text-center mb-4 font-semibold text-3xl">
           Start Managing Staff 🚀

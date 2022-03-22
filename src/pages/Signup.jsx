@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import svg from "../assets/images/human2.svg";
+import cube from "../assets/images/cube.svg";
 import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -31,7 +32,26 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="mt-5 w-128 shadow-custom3 relative bg-white border-[2px] border-black px-6 py-8"
       >
-        <img src={svg} alt="img" className="human absolute -left-96 top-10 " />
+        <img
+          src={svg}
+          alt="img"
+          className="human absolute -left-[28rem] top-5 h-128"
+        />
+        <img
+          src={cube}
+          alt="img"
+          className="float absolute -right-72 top-0 h-14"
+        />
+        <img
+          src={cube}
+          alt="img"
+          className="float absolute right-60 -top-44 h-14"
+        />
+        <img
+          src={cube}
+          alt="img"
+          className="float absolute right-20 -bottom-44 h-14"
+        />
         <h1 className="text-center mb-4 font-semibold text-3xl">
           Welcome to EasyStaff 👋
         </h1>
