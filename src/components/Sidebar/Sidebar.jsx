@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
     <div className="h-screen absolute left-0 top-0 w-56 bg-quadtiary-700 flex justify-start flex-col">
       <div id="top" className="bg-quadtiary-800 py-3 mb-10 text-center">
-        <h2 className="text-white font-extrabold underline text-2xl cursor-default">
+        <h2 className="text-white font-sans font-extrabold underline text-2xl cursor-default">
           EasyStaff
         </h2>
       </div>
@@ -34,7 +34,7 @@ const Sidebar = () => {
           </Link>
         ))}
         <div
-          className="mt-10 hover:text-white text-slate-300 transition-colors duration-300 ease-in-out  py-4 w-full flex justify-evenly items-center cursor-pointer"
+          className="mt-10 hover:text-red-500 text-slate-300 transition-colors duration-300 ease-in-out  py-4 w-full flex justify-evenly items-center cursor-pointer"
           onClick={logout}
         >
           <div className="flex w-2/5 justify-end px-3">
