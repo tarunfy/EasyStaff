@@ -23,7 +23,6 @@ export const BusinessProvider = ({ children }) => {
           ...snapshot.docs[0].data(),
           businessId: snapshot.docs[0].id,
         });
-        console.log(business);
       } else {
         exists = false;
       }

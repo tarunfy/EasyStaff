@@ -26,7 +26,7 @@ const Dashboard = () => {
     <>
       <Sidebar />
       <div className="h-screen pl-56 w-full bg-slate-50 text-center">
-        <p className="text-6xl">Welcome {currentUser.phoneNumber} 👋🏻</p>
+        <p className="text-4xl">Welcome {currentUser.email} 👋🏻</p>
       </div>
     </>
   );
