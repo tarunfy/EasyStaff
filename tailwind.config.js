@@ -6,6 +6,7 @@ module.exports = {
         custom: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         custom2:
           "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;",
+        custom3: "4px 4px 0px #212121",
       },
       height: {
         128: "32rem",

@@ -80,12 +80,6 @@ input::-webkit-inner-spin-button {
   opacity: 0.4;
 }
 
-.pattern-container {
-  background-color: #f1f5fa;
-  background-image: radial-gradient(#4c00ff 0.5px, #f1f5fa 0.5px);
-  background-size: 10px 10px;
-}
-
 .sk-chase {
   width: 50px;
   height: 50px;
