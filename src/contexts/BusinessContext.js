@@ -9,6 +9,7 @@ export const BusinessProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [staffList, setStaffList] = useState(null);
   const [salaryReports, setSalaryReports] = useState(null);
+  const [customerList, setCustomerList] = useState(null);
 
   const fetchBusiness = async (userId) => {
     setIsFetching(true);
@@ -168,13 +169,78 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  // Customers:
+  const fetchCustomers = async (businessId) => {
+    setIsFetching(true);
+    let list = [];
+    try {
+      const res = await db
+        .collection("customer")
+        .where("businessId", "==", businessId)
+        .orderBy("timestamp", "desc")
+        .get();
+      res.docs.forEach((doc) => {
+        list.push({ ...doc.data(), id: doc.id });
+      });
+      setCustomerList(list);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetching(false);
+  };
+
+  const createCustomer = async (details) => {
+    setIsLoading(true);
+    try {
+      await db.collection("customer").add(details);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const removeCustomer = async (docId) => {
+    setIsLoading(true);
+    try {
+      await db.collection("customer").doc(docId).delete();
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const updateCustomer = async (docId, details) => {
+    setIsLoading(true);
+    try {
+      await db.collection("customer").doc(docId).update(details);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const getCustomer = async (docId) => {
+    let data = null;
+    try {
+      const doc = await db.collection("customer").doc(docId).get();
+      data = doc.data();
+    } catch (err) {
+      console.log(err);
+    }
+    return data;
+  };
+
   return (
     <BusinessContext.Provider
       value={{
         fetchBusiness,
+        customerList,
         createBusiness,
         fetchStaffs,
         updateSalaryReport,
+        removeCustomer,
+        updateCustomer,
+        getCustomer,
         createStaff,
         removeStaff,
         updateStaff,
@@ -187,6 +253,9 @@ export const BusinessProvider = ({ children }) => {
         setBusiness,
         isLoading,
         salaryReports,
+        fetchCustomers,
+        createCustomer,
+        // removeCustomer,
         fetchSalaryReports,
         addNewSalaryReport,
         deleteSalaryReport,

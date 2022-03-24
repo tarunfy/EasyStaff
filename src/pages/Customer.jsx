@@ -41,10 +41,10 @@ const Customer = () => {
     async function getCustomer() {
       await fetchCustomers(business.businessId);
     }
-    getCustomer();
+    if (business) {
+      getCustomer();
+    }
   }, []);
-
-  if (business == null) history.push("/add-business");
 
   const openAddCustomerModal = () => {
     setAddCustomerModal(true);
@@ -112,7 +112,7 @@ const Customer = () => {
         {customerList && customerList.length < 1 && (
           <div className="flex justify-center items-center flex-col">
             <img src={notfound} alt="No staff found" className="h-128 w-128" />
-            <h1 className="font-bold text-2xl">No staff found</h1>
+            <h1 className="font-bold text-2xl">No customer found</h1>
           </div>
         )}
       </div>
@@ -123,12 +123,12 @@ const Customer = () => {
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
-        <Box className="p-3 bg-slate-50 text-center border-none outline-none focus:outline-none ">
+        <Box className="p-3 w-[30%] bg-slate-50 text-center border-none outline-none focus:outline-none ">
           <h1 className="text-[2rem] font-semibold">Add Customer</h1>
           <hr className="bg-slate-400 h-[2px] w-full mb-4" />
           <form
             onSubmit={addNewCustomer}
-            className="flex flex-col justify-start items-start space-y-3"
+            className="flex flex-col  justify-start items-start space-y-3"
           >
             <input
               type="text"
