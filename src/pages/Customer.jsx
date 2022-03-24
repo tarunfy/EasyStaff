@@ -5,7 +5,6 @@ import { Box, Modal } from "@mui/material";
 import notfound from "../assets/images/404.svg";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
 import CustomerCard from "../components/CustomerCard";
 
 const Customer = () => {
@@ -14,8 +13,6 @@ const Customer = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [customerCode, setCustomerCode] = useState("");
-
-  const history = useHistory();
 
   const {
     customerList,

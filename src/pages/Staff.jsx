@@ -5,7 +5,6 @@ import { Box, Modal } from "@mui/material";
 import notfound from "../assets/images/404.svg";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
 import StaffCard from "../components/StaffCard";
 
 const Staff = () => {
@@ -17,8 +16,6 @@ const Staff = () => {
   const [managerName, setManagerName] = useState("");
   const [salary, setSalary] = useState("");
   const [email, setEmail] = useState("");
-
-  const history = useHistory();
 
   const {
     staffList,
@@ -44,10 +41,10 @@ const Staff = () => {
     async function getStaff() {
       await fetchStaffs(business.businessId);
     }
-    getStaff();
+    if (business) {
+      getStaff();
+    }
   }, []);
-
-  if (business == null) history.push("/add-business");
 
   const openAddStaffModal = () => {
     setAddStaffModal(true);
