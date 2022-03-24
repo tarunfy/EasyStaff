@@ -106,6 +106,25 @@ export const BusinessProvider = ({ children }) => {
     return data;
   };
 
+  const checkStaffCodeExists = async (staffCode) => {
+    setIsLoading(true);
+    let exists = false;
+    try {
+      const snapshot = await db
+        .collection("staff")
+        .where("staffCode", "==", staffCode)
+        .get();
+      if (snapshot.docs.length > 0) {
+        exists = true;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+    return exists;
+  };
+
+  // Salary Reports:
   const fetchSalaryReports = async (userId) => {
     setIsFetching(true);
     let reports = [];
@@ -331,6 +350,7 @@ export const BusinessProvider = ({ children }) => {
         deleteSalaryReport,
         getSalaryReport,
         visitReports,
+        checkStaffCodeExists,
       }}
     >
       {children}

@@ -16,6 +16,8 @@ const Staff = () => {
   const [managerName, setManagerName] = useState("");
   const [salary, setSalary] = useState("");
   const [email, setEmail] = useState("");
+  const [staffCode, setStaffCode] = useState("");
+  const [error, setError] = useState("");
 
   const {
     staffList,
@@ -26,6 +28,7 @@ const Staff = () => {
     fetchBusiness,
     fetchStaffs,
     removeStaff,
+    checkStaffCodeExists,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -55,8 +58,14 @@ const Staff = () => {
   };
 
   const addNewStaff = async (e) => {
+    setError("");
     e.preventDefault();
 
+    const res = await checkStaffCodeExists(staffCode);
+    if (res) {
+      setError("Staff already exists with that staff code");
+      return;
+    }
     await createStaff({
       fullName,
       phoneNumber,
@@ -65,6 +74,7 @@ const Staff = () => {
       salary,
       email,
       address,
+      staffCode,
       businessId: business.businessId,
       timestamp: new Date(),
     });
@@ -87,6 +97,7 @@ const Staff = () => {
     setEmail("");
     setSalary("");
     setFullName("");
+    setStaffCode("");
   };
 
   if (isFetching || isLoading) return <Spinner />;
@@ -145,10 +156,10 @@ const Staff = () => {
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
               />
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+                type="number"
+                value={staffCode}
+                onChange={(e) => setStaffCode(e.target.value)}
+                placeholder="Staff Code"
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
               />
             </div>
@@ -187,14 +198,24 @@ const Staff = () => {
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
               />
             </div>
-            <div className="flex justify-between items-center w-full">
-              <textarea
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Address"
-                className="w-full p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
-              />
-            </div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="w-full p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
+            />
+            <textarea
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Address"
+              className="w-full p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
+            />
+            {error && (
+              <p className="text-base font-medium text-left my-1 text-red-500">
+                {error}
+              </p>
+            )}
             <div className="flex justify-end items-center space-x-3">
               <button
                 onClick={closeAddStaffModal}

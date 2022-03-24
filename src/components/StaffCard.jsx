@@ -65,17 +65,18 @@ const StaffCard = ({ staff, handleRemove, business }) => {
     <>
       <div className="w-full bg-slate-50 shadow-custom p-4 rounded-sm">
         <h1 className="font-bold text-3xl mb-4">{staff.fullName}</h1>
-        <p className="font-medium text-xl text-slate-700 mb-1">
+        <p className="font-semibold text-xl text-slate-700 mb-1">
           {staff.designation}
         </p>
-        <div className="flex justify-start items-center space-x-2 mb-4">
-          <p className="font-semibold text-base text-slate-700">
+        <div className="flex justify-start items-center space-x-2 mb-1">
+          <p className="font-medium text-base text-slate-700">
             {staff.phoneNumber}
           </p>
-          <p className="font-semibold text-base text-slate-700">
-            {staff.email}
-          </p>
+          <p className="font-medium text-base text-slate-700">{staff.email}</p>
         </div>
+        <p className="font-medium text-sm text-slate-700 mb-4">
+          {staff.staffCode}
+        </p>
         <div className="flex justify-end items-center space-x-4">
           <Tippy interactive={true} animation="scale" content="Edit staff">
             <div
@@ -118,10 +119,9 @@ const StaffCard = ({ staff, handleRemove, business }) => {
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
               />
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+                type="number"
+                disabled
+                placeholder={staff.staffCode}
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
               />
             </div>
@@ -160,14 +160,20 @@ const StaffCard = ({ staff, handleRemove, business }) => {
                 className="w-[47%] p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
               />
             </div>
-            <div className="flex justify-between items-center w-full">
-              <textarea
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Address"
-                className="w-full p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
-              />
-            </div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="w-full p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
+            />
+            <textarea
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Address"
+              className="w-full p-2 text-lg focus:outline-quadtiary-500 border-2 border-gray"
+            />
+
             <div className="flex justify-end items-center space-x-3">
               <button
                 onClick={closeUpdateStaffModal}

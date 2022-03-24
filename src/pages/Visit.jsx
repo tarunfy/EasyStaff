@@ -106,7 +106,10 @@ const Visit = () => {
                     <TableCell sx={{ fontSize: "1.2rem", fontWeight: "bold" }}>
                       Customer Id
                     </TableCell>
-                    <TableCell sx={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                    <TableCell
+                      align="right"
+                      sx={{ fontSize: "1.2rem", fontWeight: "bold" }}
+                    >
                       Customer Name
                     </TableCell>
                     <TableCell

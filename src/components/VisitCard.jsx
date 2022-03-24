@@ -59,7 +59,10 @@ const VisitCard = ({ report, deleteVisitReport, getVisitReports }) => {
         <TableCell sx={{ fontSize: "1.05rem", fontWeight: "500" }}>
           {report.id}
         </TableCell>
-        <TableCell sx={{ fontSize: "1.05rem", fontWeight: "500" }}>
+        <TableCell
+          align="right"
+          sx={{ fontSize: "1.05rem", fontWeight: "500" }}
+        >
           {report.customerName}
         </TableCell>
         <TableCell
