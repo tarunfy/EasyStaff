@@ -108,19 +108,13 @@ const VisitCard = ({ report, deleteVisitReport, getVisitReports }) => {
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
-        <Box className="px-6 py-3 bg-slate-50 text-center border-none outline-none focus:outline-none ">
+        <Box className="px-6 py-3 w-[30%] bg-slate-50 text-center border-none outline-none focus:outline-none ">
           <h1 className="text-[2rem] font-semibold">Update Visit</h1>
           <hr className="bg-slate-400 h-[2px] w-full mb-4" />
           <form
             onSubmit={(e) => updateExistingVisitReport(e)}
             className="flex flex-col justify-start items-start space-y-3"
           >
-            <label
-              htmlFor="customerId"
-              className="text-left text-lg font-semibold"
-            >
-              CustomerId
-            </label>
             <input
               type="text"
               required

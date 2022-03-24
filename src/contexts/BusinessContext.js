@@ -9,6 +9,7 @@ export const BusinessProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [staffList, setStaffList] = useState(null);
   const [salaryReports, setSalaryReports] = useState(null);
+  const [visitReports, setVisitReports] = useState(null);
   const [customerList, setCustomerList] = useState(null);
 
   const fetchBusiness = async (userId) => {
@@ -230,6 +231,71 @@ export const BusinessProvider = ({ children }) => {
     return data;
   };
 
+  // Visit:
+  const fetchVisitReports = async (userId) => {
+    setIsFetching(true);
+    let reports = [];
+    try {
+      const res = await db
+        .collection("visit")
+        .where("userId", "==", userId)
+        .get();
+      res.docs.forEach((doc) => {
+        reports.push({ ...doc.data(), id: doc.id });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    if (reports.length > 0) {
+      setVisitReports(reports);
+    } else {
+      setVisitReports(null);
+    }
+    setIsFetching(false);
+  };
+
+  const addNewVisitReport = async (reportId, report) => {
+    setIsLoading(true);
+    try {
+      await db.collection("visit").doc(reportId).set(report);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const deleteVisitReport = async (reportId) => {
+    setIsLoading(true);
+    try {
+      await db.collection("visit").doc(reportId).delete();
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const getVisitReport = async (reportId) => {
+    let data = null;
+    try {
+      const doc = await db.collection("visit").doc(reportId).get();
+      data = doc.data();
+    } catch (err) {
+      console.log(err);
+    }
+
+    return data;
+  };
+
+  const updateVisitReport = async (reportId, details) => {
+    setIsLoading(true);
+    try {
+      await db.collection("visit").doc(reportId).update(details);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <BusinessContext.Provider
       value={{
@@ -255,11 +321,16 @@ export const BusinessProvider = ({ children }) => {
         salaryReports,
         fetchCustomers,
         createCustomer,
-        // removeCustomer,
+        fetchVisitReports,
+        addNewVisitReport,
+        deleteVisitReport,
+        getVisitReport,
+        updateVisitReport,
         fetchSalaryReports,
         addNewSalaryReport,
         deleteSalaryReport,
         getSalaryReport,
+        visitReports,
       }}
     >
       {children}
