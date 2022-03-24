@@ -8,6 +8,8 @@ import Details from "./pages/Details";
 import Profile from "./pages/Profile";
 import Salary from "./pages/Salary";
 import Staff from "./pages/Staff";
+import Customer from "./pages/Customer";
+import Visit from "./pages/Visit";
 import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
@@ -70,6 +72,20 @@ function App() {
           path="/salary"
           render={(props) =>
             currentUser ? <Salary {...props} /> : <Redirect to="/signin" />
+          }
+        />
+        <Route
+          exact
+          path="/customer"
+          render={(props) =>
+            currentUser ? <Customer {...props} /> : <Redirect to="/signin" />
+          }
+        />
+        <Route
+          exact
+          path="/visit"
+          render={(props) =>
+            currentUser ? <Visit {...props} /> : <Redirect to="/signin" />
           }
         />
       </Switch>
