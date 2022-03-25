@@ -90,8 +90,8 @@ const Login = () => {
           disabled={!email || !password || !confirmPassword || isLoading}
           className={`${
             !email || !password || !confirmPassword || isLoading
-              ? "text-white block w-fit bg-quadtiary-300 my-5 rounded-sm text-xl font-medium px-6 py-2 font-sans"
-              : "my-5 w-fit block bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105 rounded-sm hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
+              ? "text-white block w-fit bg-quadtiary-300 my-5  text-xl font-medium px-6 py-2 font-sans"
+              : "my-5 w-fit block bg-quadtiary-500 hover:shadow-md transition-all hover:scale-105  hover:shadow-gray-800 duration-300 ease-in-out text-xl font-sans font-medium text-white px-6 py-2"
           }`}
         >
           {isLoading && !signupError ? (
