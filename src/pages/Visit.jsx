@@ -23,6 +23,7 @@ const Visit = () => {
   const [description, setDescription] = useState("");
   const [customerId, setCustomerId] = useState("");
   const [addVisitModal, setAddVisitModal] = useState(false);
+  const [error, setError] = useState("");
 
   const {
     visitReports,
@@ -53,13 +54,18 @@ const Visit = () => {
   };
   const addNewVisit = async (e) => {
     e.preventDefault();
-    await addNewVisitReport(customerId, {
+    setError("");
+    const res = await addNewVisitReport(customerId, {
       customerName,
       purpose,
       description,
       createdAt: Date.now(),
       userId: currentUser.uid,
     });
+    if (res) {
+      setError(res);
+      return;
+    }
     closeAddVisitModal();
     getVisitReports();
   };
@@ -104,12 +110,6 @@ const Visit = () => {
                     }}
                   >
                     <TableCell sx={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                      Customer Id
-                    </TableCell>
-                    <TableCell
-                      align="right"
-                      sx={{ fontSize: "1.2rem", fontWeight: "bold" }}
-                    >
                       Customer Name
                     </TableCell>
                     <TableCell
@@ -220,6 +220,11 @@ const Visit = () => {
               placeholder="Description"
               className="w-full mb-2 p-2 text-lg focus:outline-quadtiary-400 border-2 border-gray"
             />
+            {error && (
+              <p className="text-base font-medium text-left my-1 text-red-500">
+                {error}
+              </p>
+            )}
             <div className="flex justify-end items-center space-x-3">
               <button
                 onClick={closeAddVisitModal}

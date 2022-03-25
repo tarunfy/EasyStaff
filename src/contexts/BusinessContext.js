@@ -275,12 +275,19 @@ export const BusinessProvider = ({ children }) => {
 
   const addNewVisitReport = async (reportId, report) => {
     setIsLoading(true);
+    let error;
     try {
-      await db.collection("visit").doc(reportId).set(report);
+      const snapshot = await db.collection("visit").doc(reportId).get();
+      if (snapshot.exists) {
+        error = "CustomerId already exists";
+      } else {
+        await db.collection("visit").doc(reportId).set(report);
+      }
     } catch (err) {
       console.log(err);
     }
     setIsLoading(false);
+    return error;
   };
 
   const deleteVisitReport = async (reportId) => {

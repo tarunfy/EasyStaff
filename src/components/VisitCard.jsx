@@ -57,12 +57,6 @@ const VisitCard = ({ report, deleteVisitReport, getVisitReports }) => {
         }}
       >
         <TableCell sx={{ fontSize: "1.05rem", fontWeight: "500" }}>
-          {report.id}
-        </TableCell>
-        <TableCell
-          align="right"
-          sx={{ fontSize: "1.05rem", fontWeight: "500" }}
-        >
           {report.customerName}
         </TableCell>
         <TableCell
@@ -84,7 +78,7 @@ const VisitCard = ({ report, deleteVisitReport, getVisitReports }) => {
           {moment(report.createdAt).format("MM/DD/YYYY")}
         </TableCell>
         <TableCell align="right">
-          <Tippy content="Edit report" interactive={true} animation="scale">
+          <Tippy content="Edit visit" interactive={true} animation="scale">
             <button
               onClick={openUpdateVisitModal}
               className="p-1 border-[1px] border-zinc-800 hover:text-teal-500 hover:border-[1px] hover:border-teal-500 transition-all duration-300 ease-in-out mr-1"
@@ -92,7 +86,7 @@ const VisitCard = ({ report, deleteVisitReport, getVisitReports }) => {
               <EditIcon />
             </button>
           </Tippy>
-          <Tippy content="Delete report" interactive={true} animation="scale">
+          <Tippy content="Delete visit" interactive={true} animation="scale">
             <button
               onClick={() => handleDeleteReport(report.id)}
               className="p-1 border-[1px]  border-zinc-800 hover:text-red-500 hover:border-[1px] hover:border-red-500 transition-all duration-300 ease-in-out"
@@ -118,14 +112,6 @@ const VisitCard = ({ report, deleteVisitReport, getVisitReports }) => {
             onSubmit={(e) => updateExistingVisitReport(e)}
             className="flex flex-col justify-start items-start space-y-3"
           >
-            <input
-              type="text"
-              required
-              disabled
-              autoComplete="off"
-              placeholder={report.id}
-              className="p-2 w-full text-lg text-slate-400 border-2 border-gray"
-            />
             <input
               type="text"
               required
