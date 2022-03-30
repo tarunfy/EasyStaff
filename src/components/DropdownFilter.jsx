@@ -15,7 +15,7 @@ const DropdownFilter = ({
           id="amount-filter"
           value={filterAmount}
           onChange={(e) => setFilterAmount(e.target.value)}
-          className="py-[11px] px-2 border-[1.1px] border-black/20 cursor-pointer focus:outline-quadtiary-400"
+          className="py-[11px] bg-transparent px-2 border-[1.1px] border-black/20 cursor-pointer focus:outline-quadtiary-400"
         >
           <option value="" disabled selected>
             Amount
@@ -29,7 +29,7 @@ const DropdownFilter = ({
           id="paymentType-filter"
           value={filterPaymentType}
           onChange={(e) => setFilterPaymentType(e.target.value)}
-          className="py-[11px] px-2 border-[1.1px] border-black/20 cursor-pointer focus:outline-quadtiary-400"
+          className="py-[11px] bg-transparent px-2 border-[1.1px] border-black/20 cursor-pointer focus:outline-quadtiary-400"
         >
           <option value="" disabled selected>
             Payment Type

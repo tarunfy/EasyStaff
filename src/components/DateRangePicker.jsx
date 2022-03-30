@@ -16,10 +16,10 @@ const DateRangePicker = ({
           id="from"
           value={filterFrom}
           onChange={(e) => setFilterFrom(e.target.value)}
-          className="border-[1.1px] border-black/20"
+          className="border-[1.1px] border-black/20 outline-quadtiary-500 bg-transparent"
         />
       </div>
-      <div className="flex items-end justify-between ">
+      <div className="flex items-end justify-between">
         <label htmlFor="to" className="text-sm">
           To:
         </label>
@@ -29,7 +29,7 @@ const DateRangePicker = ({
           id="to"
           value={filterTo}
           onChange={(e) => setFilterTo(e.target.value)}
-          className="border-[1.1px] border-black/20"
+          className="border-[1.1px] border-black/20 outline-quadtiary-500 bg-transparent"
         />
       </div>
     </div>

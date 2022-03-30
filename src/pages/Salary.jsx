@@ -27,6 +27,7 @@ const Salary = () => {
   const [paymentType, setPaymentType] = useState("Regular");
   const [addSalaryModal, setAddSalaryModal] = useState(false);
 
+  const [filterName, setFilterName] = useState("");
   const [filterAmount, setFilterAmount] = useState("");
   const [filterPaymentType, setFilterPaymentType] = useState("");
   const [filterFrom, setFilterFrom] = useState("");
@@ -97,6 +98,7 @@ const Salary = () => {
     setFilterTo("");
     setFilterPaymentType("");
     setFilterAmount("");
+    setFilterName("");
   };
 
   if (isFetching || isLoading) return <Spinner />;
@@ -105,9 +107,9 @@ const Salary = () => {
     <>
       <Sidebar />
       <div className="h-screen pl-64 w-full py-7 pr-7 bg-slate-50 flex justify-start flex-col overflow-y-scroll">
-        <div className="flex items-end mb-10 justify-between w-full">
-          <div className="flex space-x-3 items-end">
-            <SearchBar />
+        <div className="flex items-end justify-between  mb-10 w-full">
+          <div className="flex space-x-3 items-end ">
+            <SearchBar filterName={filterName} setFilterName={setFilterName} />
 
             <DropdownFilter
               type="Amount"
@@ -145,12 +147,14 @@ const Salary = () => {
             </div>
           </div>
 
-          <button
-            onClick={openAddSalaryModal}
-            className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
-          >
-            Add Salary Report
-          </button>
+          <div>
+            <button
+              onClick={openAddSalaryModal}
+              className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
+            >
+              Add Salary Report
+            </button>
+          </div>
         </div>
         <div className="flex justify-center">
           {salaryReports ? (
