@@ -33,6 +33,9 @@ const Visit = () => {
     isLoading,
     deleteVisitReport,
     customerList,
+    fetchBusiness,
+    business,
+    fetchCustomers,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -43,6 +46,22 @@ const Visit = () => {
 
   useEffect(() => {
     getVisitReports();
+  }, []);
+
+  useEffect(() => {
+    async function getBusiness() {
+      await fetchBusiness(currentUser.uid);
+    }
+    getBusiness();
+  }, []);
+
+  useEffect(() => {
+    async function getCustomer() {
+      await fetchCustomers(business.businessId);
+    }
+    if (business) {
+      getCustomer();
+    }
   }, []);
 
   const openAddVisitModal = () => {

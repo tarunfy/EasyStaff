@@ -41,6 +41,9 @@ const Salary = () => {
     isLoading,
     deleteSalaryReport,
     staffList,
+    fetchStaffs,
+    business,
+    fetchBusiness,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -51,6 +54,22 @@ const Salary = () => {
 
   useEffect(() => {
     getSalaryReports();
+  }, []);
+
+  useEffect(() => {
+    async function getBusiness() {
+      await fetchBusiness(currentUser.uid);
+    }
+    getBusiness();
+  }, []);
+
+  useEffect(() => {
+    async function getStaff() {
+      await fetchStaffs(business.businessId);
+    }
+    if (business) {
+      getStaff();
+    }
   }, []);
 
   const openAddSalaryModal = () => {
@@ -132,8 +151,14 @@ const Salary = () => {
             <div className="flex items-end space-x-1">
               <Button
                 variant="contained"
-                className="!bg-quadtiary-500 !text-sm"
+                className="!bg-quadtiary-500 !text-sm "
                 onClick={applyFilters}
+                disabled={
+                  !filterAmount &&
+                  !filterPaymentType &&
+                  !filterFrom &&
+                  !filterTo
+                }
               >
                 Apply
               </Button>
