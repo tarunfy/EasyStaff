@@ -24,6 +24,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");

@@ -4,7 +4,6 @@ import Spinner from "../components/Spinner";
 import { Box, Modal } from "@mui/material";
 import notfound from "../assets/images/404.svg";
 import { BusinessContext } from "../contexts/BusinessContext";
-import { AuthContext } from "../contexts/AuthContext";
 import StaffCard from "../components/StaffCard";
 
 const Staff = () => {
