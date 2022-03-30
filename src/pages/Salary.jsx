@@ -44,6 +44,7 @@ const Salary = () => {
     fetchStaffs,
     business,
     sortByAmount,
+    filterByPaymentType,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -66,14 +67,21 @@ const Salary = () => {
   }, []);
 
   useEffect(() => {
-    async function sort() {
+    async function sortReportsByAmount() {
       await sortByAmount(filterAmount);
+    }
+    async function filterReportsByPaymentType() {
+      await filterByPaymentType(filterPaymentType);
     }
 
     if (filterAmount) {
-      sort();
+      sortReportsByAmount();
     }
-  }, [filterAmount]);
+
+    if (filterPaymentType) {
+      filterReportsByPaymentType();
+    }
+  }, [filterAmount, filterPaymentType]);
 
   const openAddSalaryModal = () => {
     setAddSalaryModal(true);
@@ -157,13 +165,20 @@ const Salary = () => {
                 variant="contained"
                 className="!bg-quadtiary-500 !text-sm "
                 onClick={applyFilters}
-                disabled={!filterPaymentType && !filterFrom && !filterTo}
+                disabled={!filterFrom && !filterTo}
               >
                 Apply
               </Button>
               <Button
                 variant="outlined"
                 onClick={clearAppliedFilters}
+                disabled={
+                  !filterAmount &&
+                  !filterFrom &&
+                  !filterName &&
+                  !filterPaymentType &&
+                  !filterTo
+                }
                 className="!text-quadtiary-500 !border-quadtiary-400 hover:!bg-quadtiary-50 !text-sm"
               >
                 Clear

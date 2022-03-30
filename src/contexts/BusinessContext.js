@@ -357,7 +357,24 @@ export const BusinessProvider = ({ children }) => {
         sortedReports.push({ ...doc.data(), id: doc.id });
       });
       setSalaryReports(sortedReports);
-      setIsFetching(false);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetching(false);
+  };
+
+  const filterByPaymentType = async (type) => {
+    setIsFetching(true);
+    let filteredReports = [];
+    try {
+      const res = await db
+        .collection("salary")
+        .where("paymentType", "==", type)
+        .get();
+      res.docs.forEach((doc) => {
+        filteredReports.push({ ...doc.data(), id: doc.id });
+      });
+      setSalaryReports(filteredReports);
     } catch (err) {
       console.log(err);
     }
@@ -368,6 +385,7 @@ export const BusinessProvider = ({ children }) => {
     <BusinessContext.Provider
       value={{
         fetchBusiness,
+        filterByPaymentType,
         sortByAmount,
         customerList,
         filterByName,
