@@ -11,7 +11,6 @@ import {
   Paper,
   Box,
   Modal,
-  Button,
 } from "@mui/material";
 import notfound from "../assets/images/404.svg";
 import Spinner from "../components/Spinner";
@@ -20,6 +19,12 @@ import SalaryCard from "../components/SalaryCard";
 import SearchBar from "../components/SearchBar";
 import DateRangePicker from "../components/DateRangePicker";
 import DropdownFilter from "../components/DropdownFilter";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/scale.css";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");
@@ -116,12 +121,7 @@ const Salary = () => {
     setPaymentType(e.target.value);
   };
 
-  const applyFilters = () => {
-    console.log(filterAmount);
-    console.log(filterPaymentType);
-    console.log(filterFrom);
-    console.log(filterTo);
-  };
+  const applyFilters = () => {};
 
   const clearAppliedFilters = () => {
     setFilterFrom("");
@@ -129,7 +129,6 @@ const Salary = () => {
     setFilterPaymentType("");
     setFilterAmount("");
     setFilterName("");
-    getSalaryReports();
   };
 
   if (isFetching || isLoading) return <Spinner />;
@@ -161,28 +160,50 @@ const Salary = () => {
             />
 
             <div className="flex items-end space-x-1">
-              <Button
-                variant="contained"
-                className="!bg-quadtiary-500 !text-sm "
-                onClick={applyFilters}
-                disabled={!filterFrom && !filterTo}
+              <Tippy
+                content="Apply Filter"
+                interactive={true}
+                animation="scale"
               >
-                Apply
-              </Button>
-              <Button
-                variant="outlined"
-                onClick={clearAppliedFilters}
-                disabled={
-                  !filterAmount &&
-                  !filterFrom &&
-                  !filterName &&
-                  !filterPaymentType &&
-                  !filterTo
-                }
-                className="!text-quadtiary-500 !border-quadtiary-400 hover:!bg-quadtiary-50 !text-sm"
+                <button
+                  onClick={applyFilters}
+                  disabled={!filterFrom && !filterTo}
+                  className="p-1 border-[1px] disabled:!cursor-not-allowed outline-quadtiary-500 border-zinc-800  hover:border-[1px]  transition-all duration-300 ease-in-out mr-1"
+                >
+                  <FilterAltIcon />
+                </button>
+              </Tippy>
+              <Tippy
+                content="Clear Filter"
+                interactive={true}
+                animation="scale"
               >
-                Clear
-              </Button>
+                <button
+                  onClick={clearAppliedFilters}
+                  disabled={
+                    !filterAmount &&
+                    !filterFrom &&
+                    !filterName &&
+                    !filterPaymentType &&
+                    !filterTo
+                  }
+                  className="p-1 border-[1px] disabled:!cursor-not-allowed outline-quadtiary-500 border-zinc-800  hover:border-[1px] transition-all duration-300 ease-in-out mr-1"
+                >
+                  <FilterAltOffIcon />
+                </button>
+              </Tippy>
+              <Tippy
+                content="Reset Reports"
+                interactive={true}
+                animation="scale"
+              >
+                <button
+                  onClick={() => getSalaryReports()}
+                  className="p-1 border-[1px] disabled:!cursor-not-allowed outline-quadtiary-500 border-zinc-800  hover:border-[1px]  transition-all duration-300 ease-in-out mr-1"
+                >
+                  <RefreshIcon />
+                </button>
+              </Tippy>
             </div>
           </div>
 

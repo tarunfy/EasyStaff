@@ -16,9 +16,6 @@ const SearchBar = ({ filterName, setFilterName }) => {
         <Stack sx={{ width: 150 }}>
           <TextField
             label="Search..."
-            InputProps={{
-              type: "search",
-            }}
             value={filterName}
             onChange={(e) => setFilterName(e.target.value)}
           />
@@ -26,7 +23,7 @@ const SearchBar = ({ filterName, setFilterName }) => {
         <button
           onClick={() => handleFilterByName()}
           disabled={!filterName}
-          className="disabled:cursor-not-allowed  py-[11px] px-2 border-[1.1px] border-l-0 border-black/20 cursor-pointer"
+          className="disabled:cursor-not-allowed  py-[14px] px-2 border-[1.1px] border-l-0 border-black/20 cursor-pointer"
         >
           <SearchIcon />
         </button>
