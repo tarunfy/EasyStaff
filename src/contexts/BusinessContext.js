@@ -381,11 +381,35 @@ export const BusinessProvider = ({ children }) => {
     setIsFetching(false);
   };
 
+  const filterByDate = async (from, to) => {
+    setIsFetching(true);
+    let filteredReports = [];
+    try {
+      const res = await db
+        .collection("salary")
+        .where("createdAt", ">", new Date(`${from}`))
+        .where("createdAt", "<", new Date(`${to}`))
+        .get();
+      if (res.docs.length > 0) {
+        res.docs.forEach((doc) => {
+          filteredReports.push({ ...doc.data(), id: doc.id });
+        });
+        setSalaryReports(filteredReports);
+      } else {
+        setSalaryReports(null);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetching(false);
+  };
+
   return (
     <BusinessContext.Provider
       value={{
         fetchBusiness,
         filterByPaymentType,
+        filterByDate,
         sortByAmount,
         customerList,
         filterByName,

@@ -82,7 +82,7 @@ const SalaryCard = ({ report, deleteSalaryReport, getSalaryReports }) => {
           align="right"
           sx={{ fontSize: "1.05rem", fontWeight: "500" }}
         >
-          {moment(report.createdAt).format("MM/DD/YYYY")}
+          {report.createdAt.toDate().toLocaleDateString()}
         </TableCell>
         <TableCell align="right">
           <Tippy content="Edit report" interactive={true} animation="scale">

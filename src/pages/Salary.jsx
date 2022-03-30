@@ -24,7 +24,6 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");
@@ -50,6 +49,7 @@ const Salary = () => {
     business,
     sortByAmount,
     filterByPaymentType,
+    filterByDate,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -78,6 +78,9 @@ const Salary = () => {
     async function filterReportsByPaymentType() {
       await filterByPaymentType(filterPaymentType);
     }
+    async function filterReportsByDateRange() {
+      await filterByDate(filterFrom, filterTo);
+    }
 
     if (filterAmount) {
       sortReportsByAmount();
@@ -86,7 +89,11 @@ const Salary = () => {
     if (filterPaymentType) {
       filterReportsByPaymentType();
     }
-  }, [filterAmount, filterPaymentType]);
+
+    if (filterFrom && filterTo) {
+      filterReportsByDateRange();
+    }
+  }, [filterAmount, filterPaymentType, filterFrom, filterTo]);
 
   const openAddSalaryModal = () => {
     setAddSalaryModal(true);
@@ -101,7 +108,7 @@ const Salary = () => {
       staffName,
       amount,
       paymentType,
-      createdAt: Date.now(),
+      createdAt: new Date(),
       userId: currentUser.uid,
     });
     closeAddSalaryModal();
@@ -120,8 +127,6 @@ const Salary = () => {
     }
     setPaymentType(e.target.value);
   };
-
-  const applyFilters = () => {};
 
   const clearAppliedFilters = () => {
     setFilterFrom("");
@@ -160,19 +165,6 @@ const Salary = () => {
             />
 
             <div className="flex items-end space-x-1">
-              <Tippy
-                content="Apply Filter"
-                interactive={true}
-                animation="scale"
-              >
-                <button
-                  onClick={applyFilters}
-                  disabled={!filterFrom && !filterTo}
-                  className="p-1 border-[1px] disabled:!cursor-not-allowed outline-quadtiary-500 border-zinc-800  hover:border-[1px]  transition-all duration-300 ease-in-out mr-1"
-                >
-                  <FilterAltIcon />
-                </button>
-              </Tippy>
               <Tippy
                 content="Clear Filter"
                 interactive={true}
