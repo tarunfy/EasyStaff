@@ -27,7 +27,7 @@ import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(null);
   const [paymentType, setPaymentType] = useState("Regular");
   const [addSalaryModal, setAddSalaryModal] = useState(false);
 
@@ -106,7 +106,7 @@ const Salary = () => {
     e.preventDefault();
     await addNewSalaryReport({
       staffName,
-      amount,
+      amount: parseInt(amount),
       paymentType,
       createdAt: new Date(),
       userId: currentUser.uid,
