@@ -11,11 +11,15 @@ import {
   Paper,
   Box,
   Modal,
+  Button,
 } from "@mui/material";
 import notfound from "../assets/images/404.svg";
 import Spinner from "../components/Spinner";
 import Sidebar from "../components/Sidebar/Sidebar";
 import SalaryCard from "../components/SalaryCard";
+import SearchBar from "../components/SearchBar";
+import DateRangePicker from "../components/DateRangePicker";
+import DropdownFilter from "../components/DropdownFilter";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");
@@ -82,7 +86,31 @@ const Salary = () => {
     <>
       <Sidebar />
       <div className="h-screen pl-64 w-full py-7 pr-7 bg-slate-50 flex justify-start flex-col overflow-y-scroll">
-        <div className="flex items-center mb-10 justify-end w-full">
+        <div className="flex items-end mb-10 justify-between w-full">
+          <div className="flex space-x-3 items-end">
+            <SearchBar />
+
+            <DropdownFilter type="Amount" />
+            <DropdownFilter type="Payment" />
+
+            <DateRangePicker />
+
+            <div className="flex items-end space-x-1">
+              <Button
+                variant="contained"
+                className="!bg-quadtiary-500 !text-sm"
+              >
+                Apply
+              </Button>
+              <Button
+                variant="outlined"
+                className="!text-quadtiary-500 !border-quadtiary-400 hover:!bg-quadtiary-50 !text-sm"
+              >
+                Clear
+              </Button>
+            </div>
+          </div>
+
           <button
             onClick={openAddSalaryModal}
             className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"

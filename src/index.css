@@ -205,11 +205,11 @@ input::-webkit-inner-spin-button {
   }
 }
 
-span {
+.hoverEffect {
   position: relative;
 }
 
-span::after {
+.hoverEffect::after {
   content: "";
   background-color: #4c00ff;
   width: 0%;
@@ -220,7 +220,7 @@ span::after {
   transition: width 0.455s ease-in-out;
 }
 
-span:hover::after {
+.hoverEffect:hover::after {
   width: 100%;
 }
 
@@ -238,4 +238,21 @@ span:hover::after {
   100% {
     transform: translatey(0px);
   }
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-radius: 0 !important;
+}
+
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  color: #4c00ff !important;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #4c00ff !important;
+}
+
+.css-1g24dm6-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 13.5px !important;
 }

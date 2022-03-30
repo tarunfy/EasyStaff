@@ -25,7 +25,7 @@ const Login = () => {
     <div className="flex justify-center items-center bg-slate-50  bg-gradient-to-br h-screen w-full">
       <form
         onSubmit={handleSubmit}
-        className="mt-5 w-128 shadow-custom3 relative bg-white border-[2px] border-black px-6 py-8"
+        className="mt-5 w-128 shadow-custom3 relative  bg-white border-[2px] border-black px-6 py-8"
       >
         <img
           src={svg}
