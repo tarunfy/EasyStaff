@@ -345,10 +345,30 @@ export const BusinessProvider = ({ children }) => {
     setIsFetching(false);
   };
 
+  const sortByAmount = async (sortType) => {
+    setIsFetching(true);
+    let sortedReports = [];
+    try {
+      const res = await db
+        .collection("salary")
+        .orderBy("amount", sortType)
+        .get();
+      res.docs.forEach((doc) => {
+        sortedReports.push({ ...doc.data(), id: doc.id });
+      });
+      setSalaryReports(sortedReports);
+      setIsFetching(false);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetching(false);
+  };
+
   return (
     <BusinessContext.Provider
       value={{
         fetchBusiness,
+        sortByAmount,
         customerList,
         filterByName,
         createBusiness,

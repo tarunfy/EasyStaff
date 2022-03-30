@@ -43,6 +43,7 @@ const Salary = () => {
     staffList,
     fetchStaffs,
     business,
+    sortByAmount,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -63,6 +64,16 @@ const Salary = () => {
       getStaff();
     }
   }, []);
+
+  useEffect(() => {
+    async function sort() {
+      await sortByAmount(filterAmount);
+    }
+
+    if (filterAmount) {
+      sort();
+    }
+  }, [filterAmount]);
 
   const openAddSalaryModal = () => {
     setAddSalaryModal(true);
@@ -146,12 +157,7 @@ const Salary = () => {
                 variant="contained"
                 className="!bg-quadtiary-500 !text-sm "
                 onClick={applyFilters}
-                disabled={
-                  !filterAmount &&
-                  !filterPaymentType &&
-                  !filterFrom &&
-                  !filterTo
-                }
+                disabled={!filterPaymentType && !filterFrom && !filterTo}
               >
                 Apply
               </Button>
