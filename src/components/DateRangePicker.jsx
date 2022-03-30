@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-
-const DateRangePicker = () => {
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-
+const DateRangePicker = ({
+  filterFrom,
+  filterTo,
+  setFilterFrom,
+  setFilterTo,
+}) => {
   return (
-    <div className="w-56">
-      <div className="flex items-end justify-between space-x-1">
+    <div className="w-[210px]">
+      <div className="flex items-end justify-between">
         <label htmlFor="from" className="text-sm">
           From:
         </label>
@@ -14,12 +14,12 @@ const DateRangePicker = () => {
           type="date"
           name="from"
           id="from"
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
+          value={filterFrom}
+          onChange={(e) => setFilterFrom(e.target.value)}
           className="border-[1.1px] border-black/20"
         />
       </div>
-      <div className="flex items-end justify-between space-x-1">
+      <div className="flex items-end justify-between ">
         <label htmlFor="to" className="text-sm">
           To:
         </label>
@@ -27,10 +27,9 @@ const DateRangePicker = () => {
           type="date"
           name="to"
           id="to"
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
+          value={filterTo}
+          onChange={(e) => setFilterTo(e.target.value)}
           className="border-[1.1px] border-black/20"
-          x
         />
       </div>
     </div>

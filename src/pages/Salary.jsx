@@ -27,6 +27,11 @@ const Salary = () => {
   const [paymentType, setPaymentType] = useState("Regular");
   const [addSalaryModal, setAddSalaryModal] = useState(false);
 
+  const [filterAmount, setFilterAmount] = useState("");
+  const [filterPaymentType, setFilterPaymentType] = useState("");
+  const [filterFrom, setFilterFrom] = useState("");
+  const [filterTo, setFilterTo] = useState("");
+
   const {
     salaryReports,
     isFetching,
@@ -80,6 +85,20 @@ const Salary = () => {
     setPaymentType(e.target.value);
   };
 
+  const applyFilters = () => {
+    console.log(filterAmount);
+    console.log(filterPaymentType);
+    console.log(filterFrom);
+    console.log(filterTo);
+  };
+
+  const clearAppliedFilters = () => {
+    setFilterFrom("");
+    setFilterTo("");
+    setFilterPaymentType("");
+    setFilterAmount("");
+  };
+
   if (isFetching || isLoading) return <Spinner />;
 
   return (
@@ -90,20 +109,35 @@ const Salary = () => {
           <div className="flex space-x-3 items-end">
             <SearchBar />
 
-            <DropdownFilter type="Amount" />
-            <DropdownFilter type="Payment" />
+            <DropdownFilter
+              type="Amount"
+              filterAmount={filterAmount}
+              setFilterAmount={setFilterAmount}
+            />
+            <DropdownFilter
+              type="Payment"
+              filterPaymentType={filterPaymentType}
+              setFilterPaymentType={setFilterPaymentType}
+            />
 
-            <DateRangePicker />
+            <DateRangePicker
+              filterFrom={filterFrom}
+              filterTo={filterTo}
+              setFilterFrom={setFilterFrom}
+              setFilterTo={setFilterTo}
+            />
 
             <div className="flex items-end space-x-1">
               <Button
                 variant="contained"
                 className="!bg-quadtiary-500 !text-sm"
+                onClick={applyFilters}
               >
                 Apply
               </Button>
               <Button
                 variant="outlined"
+                onClick={clearAppliedFilters}
                 className="!text-quadtiary-500 !border-quadtiary-400 hover:!bg-quadtiary-50 !text-sm"
               >
                 Clear
