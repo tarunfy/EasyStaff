@@ -33,7 +33,6 @@ const Visit = () => {
     isLoading,
     deleteVisitReport,
     customerList,
-    fetchBusiness,
     business,
     fetchCustomers,
   } = useContext(BusinessContext);
@@ -46,13 +45,6 @@ const Visit = () => {
 
   useEffect(() => {
     getVisitReports();
-  }, []);
-
-  useEffect(() => {
-    async function getBusiness() {
-      await fetchBusiness(currentUser.uid);
-    }
-    getBusiness();
   }, []);
 
   useEffect(() => {

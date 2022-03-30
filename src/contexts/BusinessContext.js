@@ -322,11 +322,35 @@ export const BusinessProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  // Filter:
+  const filterByName = async (name) => {
+    setIsFetching(true);
+    let filteredReports = [];
+    try {
+      const res = await db
+        .collection("salary")
+        .where("staffName", "==", name)
+        .get();
+      if (res.docs.length > 0) {
+        res.docs.forEach((doc) => {
+          filteredReports.push({ ...doc.data(), id: doc.id });
+        });
+        setSalaryReports(filteredReports);
+      } else {
+        setSalaryReports(null);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetching(false);
+  };
+
   return (
     <BusinessContext.Provider
       value={{
         fetchBusiness,
         customerList,
+        filterByName,
         createBusiness,
         fetchStaffs,
         updateSalaryReport,

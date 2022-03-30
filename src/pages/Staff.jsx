@@ -25,20 +25,10 @@ const Staff = () => {
     isLoading,
     isFetching,
     business,
-    fetchBusiness,
     fetchStaffs,
     removeStaff,
     checkStaffCodeExists,
   } = useContext(BusinessContext);
-
-  const { currentUser } = useContext(AuthContext);
-
-  useEffect(() => {
-    async function getBusiness() {
-      await fetchBusiness(currentUser.uid);
-    }
-    getBusiness();
-  }, []);
 
   useEffect(() => {
     async function getStaff() {

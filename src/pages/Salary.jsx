@@ -43,7 +43,6 @@ const Salary = () => {
     staffList,
     fetchStaffs,
     business,
-    fetchBusiness,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -54,13 +53,6 @@ const Salary = () => {
 
   useEffect(() => {
     getSalaryReports();
-  }, []);
-
-  useEffect(() => {
-    async function getBusiness() {
-      await fetchBusiness(currentUser.uid);
-    }
-    getBusiness();
   }, []);
 
   useEffect(() => {
@@ -118,6 +110,7 @@ const Salary = () => {
     setFilterPaymentType("");
     setFilterAmount("");
     setFilterName("");
+    getSalaryReports();
   };
 
   if (isFetching || isLoading) return <Spinner />;
@@ -248,9 +241,7 @@ const Salary = () => {
                 alt="No staff found"
                 className="h-128 w-128"
               />
-              <h1 className="font-bold text-2xl">
-                No salary report found, please add one.
-              </h1>
+              <h1 className="font-bold text-2xl">No salary report found.</h1>
             </div>
           )}
         </div>
