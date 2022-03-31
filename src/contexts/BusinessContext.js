@@ -9,6 +9,7 @@ export const BusinessProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [staffList, setStaffList] = useState(null);
   const [salaryReports, setSalaryReports] = useState(null);
+  const [filteredSalaryReports, setFilteredSalaryReports] = useState(null);
   const [visitReports, setVisitReports] = useState(null);
   const [customerList, setCustomerList] = useState(null);
 
@@ -335,9 +336,9 @@ export const BusinessProvider = ({ children }) => {
         res.docs.forEach((doc) => {
           filteredReports.push({ ...doc.data(), id: doc.id });
         });
-        setSalaryReports(filteredReports);
+        setFilteredSalaryReports(filteredReports);
       } else {
-        setSalaryReports(null);
+        setFilteredSalaryReports(null);
       }
     } catch (err) {
       console.log(err);
@@ -356,7 +357,7 @@ export const BusinessProvider = ({ children }) => {
       res.docs.forEach((doc) => {
         sortedReports.push({ ...doc.data(), id: doc.id });
       });
-      setSalaryReports(sortedReports);
+      setFilteredSalaryReports(sortedReports);
     } catch (err) {
       console.log(err);
     }
@@ -375,9 +376,9 @@ export const BusinessProvider = ({ children }) => {
         res.docs.forEach((doc) => {
           filteredReports.push({ ...doc.data(), id: doc.id });
         });
-        setSalaryReports(filteredReports);
+        setFilteredSalaryReports(filteredReports);
       } else {
-        setSalaryReports(null);
+        setFilteredSalaryReports(null);
       }
     } catch (err) {
       console.log(err);
@@ -398,41 +399,15 @@ export const BusinessProvider = ({ children }) => {
         res.docs.forEach((doc) => {
           filteredReports.push({ ...doc.data(), id: doc.id });
         });
-        setSalaryReports(filteredReports);
+        setFilteredSalaryReports(filteredReports);
       } else {
-        setSalaryReports(null);
+        setFilteredSalaryReports(null);
       }
     } catch (err) {
       console.log(err);
     }
     setIsFetching(false);
   };
-
-  // const complexQuery = async (queryParams) => {
-  //   setIsFetching(true);
-  //   let filteredReports = [];
-  //   try {
-  //     const res = db
-  //       .collection("salary")
-  //       .where("fullName", "==", queryParams.filterName)
-  //       .where("paymentType", "==", queryParams.filterPaymentType)
-  //       .where("createdAt", ">", new Date(`${queryParams.filterFrom}`))
-  //       .where("createdAt", "<", new Date(`${queryParams.filterTo}`))
-  //       .orderBy("amount", queryParams.filterAmount)
-  //       .get();
-  //     if (res.docs.length > 0) {
-  //       res.docs.forEach((doc) => {
-  //         filteredReports.push({ ...doc.data(), id: doc.id });
-  //       });
-  //       setSalaryReports(filteredReports);
-  //     } else {
-  //       setSalaryReports(null);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   setIsFetching(false);
-  // };
 
   return (
     <BusinessContext.Provider
@@ -473,6 +448,8 @@ export const BusinessProvider = ({ children }) => {
         deleteSalaryReport,
         getSalaryReport,
         visitReports,
+        filteredSalaryReports,
+        setFilteredSalaryReports,
         checkStaffCodeExists,
       }}
     >

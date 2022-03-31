@@ -24,7 +24,6 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");
@@ -51,6 +50,8 @@ const Salary = () => {
     sortByAmount,
     filterByPaymentType,
     filterByDate,
+    filteredSalaryReports,
+    setFilteredSalaryReports,
   } = useContext(BusinessContext);
 
   const { currentUser } = useContext(AuthContext);
@@ -75,12 +76,15 @@ const Salary = () => {
   useEffect(() => {
     async function sortReportsByAmount() {
       await sortByAmount(filterAmount);
+      return;
     }
     async function filterReportsByPaymentType() {
       await filterByPaymentType(filterPaymentType);
+      return;
     }
     async function filterReportsByDateRange() {
       await filterByDate(filterFrom, filterTo);
+      return;
     }
 
     if (filterAmount) {
@@ -191,7 +195,7 @@ const Salary = () => {
                 animation="scale"
               >
                 <button
-                  onClick={() => getSalaryReports()}
+                  onClick={() => setFilteredSalaryReports(null)}
                   className="p-1 border-[1px] disabled:!cursor-not-allowed outline-quadtiary-500 border-zinc-800  hover:border-[1px]  transition-all duration-300 ease-in-out mr-1"
                 >
                   <RefreshIcon />
@@ -258,14 +262,23 @@ const Salary = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {salaryReports.map((report, index) => (
-                    <SalaryCard
-                      report={report}
-                      key={index}
-                      deleteSalaryReport={deleteSalaryReport}
-                      getSalaryReports={getSalaryReports}
-                    />
-                  ))}
+                  {filteredSalaryReports
+                    ? filteredSalaryReports.map((report, index) => (
+                        <SalaryCard
+                          report={report}
+                          key={index}
+                          deleteSalaryReport={deleteSalaryReport}
+                          getSalaryReports={getSalaryReports}
+                        />
+                      ))
+                    : salaryReports.map((report, index) => (
+                        <SalaryCard
+                          report={report}
+                          key={index}
+                          deleteSalaryReport={deleteSalaryReport}
+                          getSalaryReports={getSalaryReports}
+                        />
+                      ))}
                 </TableBody>
               </Table>
             </TableContainer>
