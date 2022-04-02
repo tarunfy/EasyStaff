@@ -11,7 +11,7 @@ const Home = () => {
       <div className="bg-slate-50 h-screen main flex flex-col justify-center items-center px-10">
         <h1
           id="hero-heading"
-          className="text-8xl  font-sans text-center tracking-tighter z-30 font-bold cursor-default"
+          className="text-8xl  font-sans text-stone-800 text-center tracking-tighter z-30 font-bold cursor-default"
         >
           The{" "}
           <span className="hoverEffect hover:text-quadtiary-500 inline-block transform hover:-translate-y-2 transition duration-200 ease-in-out">
