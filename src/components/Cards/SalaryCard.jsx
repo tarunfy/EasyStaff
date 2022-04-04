@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { BusinessContext } from "../contexts/BusinessContext";
-import { AuthContext } from "../contexts/AuthContext";
+import { BusinessContext } from "../../contexts/BusinessContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { Box, Modal, TableCell, TableRow } from "@mui/material";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";

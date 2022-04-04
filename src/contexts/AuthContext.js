@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import { auth } from "../services/firebase";
 import { BusinessContext } from "./BusinessContext";
+import { auth } from "../services/firebase";
 import Spinner from "../components/Spinner/Spinner";
 
 export const AuthContext = createContext(null);
@@ -29,10 +29,8 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
     let result = true;
     try {
-      const res = await auth.signInWithEmailAndPassword(email, password);
-      console.log(res.user);
+      await auth.signInWithEmailAndPassword(email, password);
     } catch (err) {
-      console.log(err);
       setSigninError(err.message);
       result = false;
     }
@@ -44,8 +42,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async (email, password) => {
     setIsLoading(true);
     try {
-      const res = await auth.createUserWithEmailAndPassword(email, password);
-      console.log(res.user);
+      await auth.createUserWithEmailAndPassword(email, password);
     } catch (err) {
       setSignupError(err.message);
     }

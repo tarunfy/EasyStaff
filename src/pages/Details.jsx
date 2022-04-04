@@ -61,7 +61,7 @@ const Details = () => {
             className="bg-white w-128 shadow-custom2 z-20 p-4 text-black"
           >
             <h1 className="text-3xl text-center mb-3 font-bold text-black  cursor-default">
-              Create Your Business
+              Add Your Business
             </h1>
             <input
               type="text"
@@ -71,7 +71,7 @@ const Details = () => {
               required
               value={businessName}
               onChange={handleChange}
-              placeholder="Business Name"
+              placeholder="Business name"
               className="text-xl p-2 border-2  w-full focus:border-2 focus:border-quadtiary-400 border-gray-300 outline-none"
             />
             <input
@@ -81,7 +81,7 @@ const Details = () => {
               required
               value={businessEmail}
               onChange={handleChange}
-              placeholder="Business Email"
+              placeholder="Business email"
               className="text-xl p-2 border-2 my-4 w-full focus:border-2 focus:border-quadtiary-400 border-gray-300 outline-none"
             />
             <input
@@ -93,22 +93,24 @@ const Details = () => {
               required
               value={businessContactNumber}
               onChange={handleChange}
-              placeholder="Business Contact Number"
-              className="text-xl p-2 border-2 w-full focus:border-2 focus:border-quadtiary-400 border-gray-300 outline-none"
+              placeholder="Business contact number"
+              className="text-xl p-2 border-2 w-full mb-4 focus:border-2 focus:border-quadtiary-400 border-gray-300 outline-none"
             />
-            <button
-              type="submit"
-              className="w-full bg-quadtiary-500 text-white font-semibold text-xl py-2 px-4 my-4 hover:bg-quadtiary-600 duration-500 transition-colors ease-in-out"
-            >
-              Create Business
-            </button>
-            <button
-              type="reset"
-              onClick={resetForm}
-              className="w-full text-quadtiary-500 bg-white border-2 border-quadtiary-500 font-semibold text-xl py-2 px-4 hover:bg-quadtiary-50  duration-500 transition-colors ease-in-outs"
-            >
-              Clear
-            </button>
+            <div className="flex items-center justify-between">
+              <button
+                type="submit"
+                className="w-[47%] bg-quadtiary-500 text-white font-semibold border-[1px] border-quadtiary-500 text-xl py-2 px-4 hover:bg-quadtiary-600 duration-500 transition-colors ease-in-out"
+              >
+                Create Business
+              </button>
+              <button
+                type="reset"
+                onClick={resetForm}
+                className="w-[47%] text-quadtiary-500 bg-white border-[1px] border-quadtiary-500 font-semibold text-xl py-2 px-4 hover:bg-quadtiary-50  duration-500 transition-colors ease-in-outs"
+              >
+                Clear
+              </button>
+            </div>
           </form>
         </div>
       </div>

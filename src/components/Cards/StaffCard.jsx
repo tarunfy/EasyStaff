@@ -5,7 +5,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { Modal } from "@mui/material";
 import { Box } from "@mui/system";
-import { BusinessContext } from "../contexts/BusinessContext";
+import { BusinessContext } from "../../contexts/BusinessContext";
 
 const StaffCard = ({ staff, handleRemove, business }) => {
   const [updateStaffModal, setUpdateStaffModal] = useState(false);
