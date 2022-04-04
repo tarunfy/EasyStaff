@@ -210,25 +210,6 @@ input::-webkit-inner-spin-button {
   }
 }
 
-.hoverEffect {
-  position: relative;
-}
-
-.hoverEffect::after {
-  content: "";
-  background-color: #4c00ff;
-  width: 0%;
-  position: absolute;
-  height: 10px;
-  bottom: 40%;
-  left: 0%;
-  transition: width 0.455s ease-in-out;
-}
-
-.hoverEffect:hover::after {
-  width: 100%;
-}
-
 .float {
   animation: float 6s ease-in-out infinite;
 }
@@ -260,4 +241,37 @@ input::-webkit-inner-spin-button {
 
 .css-1g24dm6-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 13.5px !important;
+}
+
+
+
+.animation:before, .animation:after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 8px;
+  top: 50%;
+  margin-top: -0.5px;
+  background: #4400e6;
+}
+
+.animation:before {
+  left: -2.5px;
+}
+.animation:after {
+  right: 2.5px;
+  background: #4400e6;
+  transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.animation:hover:before {
+  background: #4400e6;
+  width: 100%;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.animation:hover:after {
+  background: transparent;
+  width: 100%;
+  transition: 0s;
 }

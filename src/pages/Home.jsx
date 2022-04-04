@@ -14,11 +14,11 @@ const Home = () => {
           className="text-8xl  font-sans text-stone-800 text-center tracking-tighter z-30 font-bold cursor-default"
         >
           The{" "}
-          <span className="hoverEffect hover:text-quadtiary-500 inline-block transform hover:-translate-y-2 transition duration-200 ease-in-out">
+          <span className="animation hover:text-quadtiary-500 inline-block transform hover:-translate-y-2 transition duration-200 ease-in-out">
             Proffesional
           </span>{" "}
           Staff{" "}
-          <span className="hoverEffect hover:text-quadtiary-500 inline-block transform hover:-translate-y-2 transition duration-200 ease-in-out">
+          <span className="animation hover:text-quadtiary-500 inline-block transform hover:-translate-y-2 transition duration-200 ease-in-out">
             Management
           </span>{" "}
           App you were waiting for.
@@ -38,7 +38,7 @@ const Home = () => {
         <img
           src={arrow}
           alt="scribble-arrow"
-          className="absolute bottom-14  z-0 left-[47%] h-20 w-16 slide-top"
+          className="absolute bottom-14  z-0 left-[48%] h-20 w-16 slide-top"
         />
       </div>
     </>
