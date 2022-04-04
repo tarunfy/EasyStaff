@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     setSigninError("");
     const res = await signin(email, password);
-    if (res) history.push("/dashboard");
+    if (res) history.push("/staff");
   };
 
   return (

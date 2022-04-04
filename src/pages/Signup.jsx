@@ -20,7 +20,7 @@ const Login = () => {
     setSignupError("");
     if (password === confirmPassword) {
       const res = await signup(email, password);
-      if (res) history.push("/dashboard");
+      if (res) history.push("/staff");
     } else {
       setSignupError("Passwords do not match");
     }

@@ -4,7 +4,9 @@ import Spinner from "../components/Spinner";
 import { Box, Modal } from "@mui/material";
 import notfound from "../assets/images/404.svg";
 import { BusinessContext } from "../contexts/BusinessContext";
+import { AuthContext } from "../contexts/AuthContext";
 import StaffCard from "../components/StaffCard";
+import { useHistory } from "react-router-dom";
 
 const Staff = () => {
   const [addStaffModal, setAddStaffModal] = useState(false);
@@ -18,6 +20,8 @@ const Staff = () => {
   const [staffCode, setStaffCode] = useState("");
   const [error, setError] = useState("");
 
+  const history = useHistory();
+
   const {
     staffList,
     createStaff,
@@ -27,7 +31,10 @@ const Staff = () => {
     fetchStaffs,
     removeStaff,
     checkStaffCodeExists,
+    fetchBusiness,
   } = useContext(BusinessContext);
+
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function getStaff() {
@@ -37,6 +44,15 @@ const Staff = () => {
       getStaff();
     }
   }, []);
+
+  useEffect(() => {
+    async function getBusiness() {
+      await fetchBusiness(currentUser.uid);
+    }
+    getBusiness();
+  }, []);
+
+  if (business == null) history.push("/add-business");
 
   const openAddStaffModal = () => {
     setAddStaffModal(true);

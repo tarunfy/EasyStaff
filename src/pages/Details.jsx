@@ -24,7 +24,7 @@ const Details = () => {
     async function checkBusiness() {
       const exists = await fetchBusiness(currentUser.uid);
       if (exists) {
-        history.push("/dashboard");
+        history.push("/staff");
       }
     }
     checkBusiness();
