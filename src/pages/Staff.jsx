@@ -1,12 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Spinner from "../components/Spinner";
-import { Box, Modal } from "@mui/material";
-import notfound from "../assets/images/404.svg";
+import { Sidebar, Spinner, StaffCard } from "../components";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
-import StaffCard from "../components/StaffCard";
 import { useHistory } from "react-router-dom";
+import { Box, Modal } from "@mui/material";
+import notfound from "../assets/images/404.svg";
 
 const Staff = () => {
   const [addStaffModal, setAddStaffModal] = useState(false);

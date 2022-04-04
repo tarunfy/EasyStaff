@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import arrow from "../assets/images/arrow.svg";
 import { IoArrowForwardCircle } from "react-icons/io5";
+import arrow from "../assets/images/arrow.svg";
 
 const Home = () => {
   return (

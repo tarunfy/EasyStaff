@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import svg from "../assets/images/human2.svg";
-import cube from "../assets/images/cube.svg";
 import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import svg from "../assets/images/human2.svg";
+import cube from "../assets/images/cube.svg";
 
 const Login = () => {
   const [email, setEmail] = useState("");

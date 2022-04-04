@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import Spinner from "../components/Spinner";
+import { Spinner } from "../components";
 import { AuthContext } from "../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 import { BusinessContext } from "../contexts/BusinessContext";
 import businessImg from "../assets/images/business.svg";
 

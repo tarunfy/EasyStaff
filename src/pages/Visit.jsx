@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import { Spinner, Sidebar, VisitCard } from "../components";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
 import {
@@ -12,13 +13,10 @@ import {
   Box,
   Modal,
 } from "@mui/material";
-import notfound from "../assets/images/404.svg";
-import Spinner from "../components/Spinner";
-import Sidebar from "../components/Sidebar/Sidebar";
-import VisitCard from "../components/VisitCard";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import csvDownload from "json-to-csv-export";
 import moment from "moment";
+import notfound from "../assets/images/404.svg";
 
 const Visit = () => {
   const [customerName, setCustomerName] = useState("");

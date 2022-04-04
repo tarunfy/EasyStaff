@@ -1,6 +1,19 @@
 import { useState, useContext, useEffect } from "react";
+import {
+  Spinner,
+  Sidebar,
+  SalaryCard,
+  SearchBar,
+  DateRangePicker,
+  DropdownFilter,
+} from "../components";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/scale.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Table,
   TableBody,
@@ -12,22 +25,11 @@ import {
   Box,
   Modal,
 } from "@mui/material";
-import notfound from "../assets/images/404.svg";
-import Spinner from "../components/Spinner";
-import Sidebar from "../components/Sidebar/Sidebar";
-import SalaryCard from "../components/SalaryCard";
-import SearchBar from "../components/SearchBar";
-import DateRangePicker from "../components/DateRangePicker";
-import DropdownFilter from "../components/DropdownFilter";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/animations/scale.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import csvDownload from "json-to-csv-export";
+import notfound from "../assets/images/404.svg";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");

@@ -1,11 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Spinner from "../components/Spinner";
-import { Box, Modal } from "@mui/material";
-import notfound from "../assets/images/404.svg";
+import { Sidebar, Spinner, CustomerCard } from "../components";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
-import CustomerCard from "../components/CustomerCard";
+import { Box, Modal } from "@mui/material";
+import notfound from "../assets/images/404.svg";
 
 const Customer = () => {
   const [addCustomerModal, setAddCustomerModal] = useState(false);
