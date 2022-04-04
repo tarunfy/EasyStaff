@@ -24,6 +24,8 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");
@@ -80,10 +82,16 @@ const Salary = () => {
     }
     async function filterReportsByPaymentType() {
       await filterByPaymentType(filterPaymentType);
+      if (filteredSalaryReports == null) {
+        toast.error("No matching results.");
+      }
       return;
     }
     async function filterReportsByDateRange() {
       await filterByDate(filterFrom, filterTo);
+      if (filteredSalaryReports == null) {
+        toast.error("No matching results.");
+      }
       return;
     }
 
@@ -384,6 +392,17 @@ const Salary = () => {
           </form>
         </Box>
       </Modal>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };
