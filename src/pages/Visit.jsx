@@ -16,6 +16,9 @@ import notfound from "../assets/images/404.svg";
 import Spinner from "../components/Spinner";
 import Sidebar from "../components/Sidebar/Sidebar";
 import VisitCard from "../components/VisitCard";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import csvDownload from "json-to-csv-export";
+import moment from "moment";
 
 const Visit = () => {
   const [customerName, setCustomerName] = useState("");
@@ -87,13 +90,30 @@ const Visit = () => {
     setDescription("");
   };
 
+  const handleDownload = () => {
+    const list = visitReports.map((visit, index) => ({
+      "Serial Number": index + 1,
+      "Customer Name": visit.customerName,
+      Purpose: visit.purpose,
+      Description: visit.description,
+      "Visited on": moment(visit.createdAt).format("MM/DD/YYYY"),
+    }));
+    csvDownload(list);
+  };
+
   if (isFetching || isLoading) return <Spinner />;
 
   return (
     <>
       <Sidebar />
       <div className="h-screen pl-64 w-full py-7 pr-7 bg-slate-50 flex justify-start flex-col overflow-y-scroll">
-        <div className="flex items-center mb-10 justify-end w-full">
+        <div className="flex items-center mb-10 justify-end w-full space-x-2">
+          <button
+            onClick={handleDownload}
+            className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
+          >
+            <FileDownloadIcon /> Download
+          </button>
           <button
             onClick={openAddVisitModal}
             className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"

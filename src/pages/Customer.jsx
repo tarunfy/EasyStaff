@@ -88,6 +88,7 @@ const Customer = () => {
       <div className="h-screen pl-64 w-full py-7 pr-7 bg-slate-50 flex justify-start flex-col overflow-y-scroll">
         <div className="flex justify-between items-center w-full  mb-10">
           <h1 className="text-6xl font-sans font-black">Your Customers</h1>
+
           <button
             onClick={openAddCustomerModal}
             className="uppercase font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
