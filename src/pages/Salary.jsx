@@ -26,6 +26,8 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import csvDownload from "json-to-csv-export";
 
 const Salary = () => {
   const [staffName, setStaffName] = useState("");
@@ -146,6 +148,17 @@ const Salary = () => {
     setFilterName("");
   };
 
+  const handleDownload = () => {
+    const report = salaryReports.map((report, index) => ({
+      "Serial Number": index + 1,
+      "Staff Name": report.staffName,
+      "Payment Type": report.paymentType,
+      Amount: report.amount,
+      "Payed on": report.createdAt.toDate().toLocaleDateString(),
+    }));
+    csvDownload(report);
+  };
+
   if (isFetching || isLoading) return <Spinner />;
 
   return (
@@ -209,12 +222,18 @@ const Salary = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex items-end space-x-2">
+            <button
+              onClick={handleDownload}
+              className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
+            >
+              <FileDownloadIcon /> Download
+            </button>
             <button
               onClick={openAddSalaryModal}
               className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
             >
-              Add Salary Report
+              Add Salary
             </button>
           </div>
         </div>

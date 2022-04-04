@@ -5,7 +5,7 @@ const DateRangePicker = ({
   setFilterTo,
 }) => {
   return (
-    <div className="w-[220px]">
+    <div className="w-[180px]">
       <div className="flex items-end justify-between">
         <label htmlFor="from" className="text-sm">
           From:
