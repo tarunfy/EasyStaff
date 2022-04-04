@@ -81,7 +81,7 @@ const StaffCard = ({ staff, handleRemove, business }) => {
           <Tippy interactive={true} animation="scale" content="Edit staff">
             <div
               onClick={openUpdateStaffModal}
-              className="p-2 border-[1px] hover:cursor-pointer border-zinc-800 hover:text-teal-500 hover:border-[1px] hover:border-teal-500 transition-all duration-300 ease-in-out"
+              className="p-2 border-[1px] hover:cursor-pointer border-zinc-800 hover:text-quadtiary-500 hover:border-[1px] hover:border-quadtiary-500 transition-all duration-300 ease-in-out"
             >
               <MdEdit className="h-6 w-6" />
             </div>

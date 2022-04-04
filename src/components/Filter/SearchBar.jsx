@@ -18,7 +18,7 @@ const SearchBar = ({ filterName, setFilterName }) => {
   return (
     <>
       <div className="flex flex-col items-start relative justify-start">
-        <Stack direction="row">
+        <div className="flex">
           <TextField
             label="Search..."
             value={filterName}
@@ -33,7 +33,7 @@ const SearchBar = ({ filterName, setFilterName }) => {
           >
             <SearchIcon />
           </button>
-        </Stack>
+        </div>
       </div>
       <ToastContainer
         position="bottom-right"

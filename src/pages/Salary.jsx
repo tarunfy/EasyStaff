@@ -167,10 +167,9 @@ const Salary = () => {
     <>
       <Sidebar />
       <div className="h-screen pl-64 w-full py-7 pr-7 bg-slate-50 flex justify-start flex-col overflow-y-scroll">
-        <div className="flex items-end justify-between  mb-10 w-full">
-          <div className="flex space-x-3 items-end ">
+        <div className="flex  items-center py-5   justify-between  mb-10 w-full">
+          <div className="flex space-x-2 items-end ">
             <SearchBar filterName={filterName} setFilterName={setFilterName} />
-
             <DropdownFilter
               type="Amount"
               filterAmount={filterAmount}
@@ -181,7 +180,6 @@ const Salary = () => {
               filterPaymentType={filterPaymentType}
               setFilterPaymentType={setFilterPaymentType}
             />
-
             <DateRangePicker
               filterFrom={filterFrom}
               filterTo={filterTo}
@@ -189,7 +187,7 @@ const Salary = () => {
               setFilterTo={setFilterTo}
             />
 
-            <div className="flex items-end space-x-1">
+            <div className="flex items-end space-x-1 ml-1">
               <Tippy
                 content="Clear Filter"
                 interactive={true}

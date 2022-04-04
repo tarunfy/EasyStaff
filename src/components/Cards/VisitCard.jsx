@@ -81,7 +81,7 @@ const VisitCard = ({ report, deleteVisitReport, getVisitReports }) => {
           <Tippy content="Edit visit" interactive={true} animation="scale">
             <button
               onClick={openUpdateVisitModal}
-              className="p-1 border-[1px] border-zinc-800 hover:text-teal-500 hover:border-[1px] hover:border-teal-500 transition-all duration-300 ease-in-out mr-1"
+              className="p-1 border-[1px] border-zinc-800 hover:text-quadtiary-500 hover:border-[1px] hover:border-quadtiary-500 transition-all duration-300 ease-in-out mr-1"
             >
               <EditIcon />
             </button>

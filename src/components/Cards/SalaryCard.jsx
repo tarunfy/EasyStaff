@@ -87,7 +87,7 @@ const SalaryCard = ({ report, deleteSalaryReport, getSalaryReports }) => {
           <Tippy content="Edit report" interactive={true} animation="scale">
             <button
               onClick={openUpdateSalaryModal}
-              className="p-1 border-[1px] outline-quadtiary-500 border-zinc-800 hover:text-teal-500 hover:border-[1px] hover:border-teal-500 transition-all duration-300 ease-in-out mr-1"
+              className="p-1 border-[1px] outline-quadtiary-500 border-zinc-800 hover:text-quadtiary-500 hover:border-[1px] hover:border-quadtiary-500 transition-all duration-300 ease-in-out mr-1"
             >
               <EditIcon />
             </button>
