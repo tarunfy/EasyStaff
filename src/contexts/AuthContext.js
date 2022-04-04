@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { auth } from "../services/firebase";
 import { BusinessContext } from "./BusinessContext";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/Spinner/Spinner";
 
 export const AuthContext = createContext(null);
 

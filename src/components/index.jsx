@@ -1,9 +1,9 @@
-export { default as CustomerCard } from "./CustomerCard";
+export { default as CustomerCard } from "./Cards/CustomerCard";
 export { default as Sidebar } from "./Sidebar/Sidebar";
-export { default as DateRangePicker } from "./DateRangePicker";
-export { default as DropdownFilter } from "./DropDownFilter";
-export { default as SalaryCard } from "./SalaryCard";
-export { default as Spinner } from "./Spinner";
-export { default as SearchBar } from "./SearchBar";
-export { default as StaffCard } from "./StaffCard";
-export { default as VisitCard } from "./VisitCard";
+export { default as DateRangePicker } from "./Filter/DateRangePicker";
+export { default as DropdownFilter } from "./Filter/DropdownFilter";
+export { default as SalaryCard } from "./Cards/SalaryCard";
+export { default as Spinner } from "./Spinner/Spinner";
+export { default as SearchBar } from "./Filter/SearchBar";
+export { default as StaffCard } from "./Cards/StaffCard";
+export { default as VisitCard } from "./Cards/VisitCard";
