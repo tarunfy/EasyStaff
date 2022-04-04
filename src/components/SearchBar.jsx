@@ -2,12 +2,17 @@ import { useContext, useState } from "react";
 import { BusinessContext } from "../contexts/BusinessContext";
 import SearchIcon from "@mui/icons-material/Search";
 import { Stack, TextField } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SearchBar = ({ filterName, setFilterName }) => {
   const { filterByName } = useContext(BusinessContext);
 
-  const handleFilterByName = () => {
-    filterByName(filterName.trim());
+  const handleFilterByName = async () => {
+    const res = await filterByName(filterName.trim());
+    if (res.error) {
+      toast.error(res.error);
+    }
   };
 
   return (
@@ -30,6 +35,17 @@ const SearchBar = ({ filterName, setFilterName }) => {
           </button>
         </Stack>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

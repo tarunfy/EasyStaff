@@ -326,6 +326,7 @@ export const BusinessProvider = ({ children }) => {
   // Filter:
   const filterByName = async (name) => {
     setIsFetching(true);
+    let error = "";
     let filteredReports = [];
     try {
       const res = await db
@@ -338,12 +339,16 @@ export const BusinessProvider = ({ children }) => {
         });
         setFilteredSalaryReports(filteredReports);
       } else {
+        error = "No matching result found.";
         setFilteredSalaryReports(null);
       }
     } catch (err) {
       console.log(err);
     }
     setIsFetching(false);
+    return {
+      error,
+    };
   };
 
   const sortByAmount = async (sortType) => {
@@ -366,6 +371,7 @@ export const BusinessProvider = ({ children }) => {
 
   const filterByPaymentType = async (type) => {
     setIsFetching(true);
+    let error = "";
     let filteredReports = [];
     try {
       const res = await db
@@ -378,16 +384,21 @@ export const BusinessProvider = ({ children }) => {
         });
         setFilteredSalaryReports(filteredReports);
       } else {
+        error = "No matching result found.";
         setFilteredSalaryReports(null);
       }
     } catch (err) {
       console.log(err);
     }
     setIsFetching(false);
+    return {
+      error,
+    };
   };
 
   const filterByDate = async (from, to) => {
     setIsFetching(true);
+    let error = "";
     let filteredReports = [];
     try {
       const res = await db
@@ -401,12 +412,16 @@ export const BusinessProvider = ({ children }) => {
         });
         setFilteredSalaryReports(filteredReports);
       } else {
+        error = "No matching result found.";
         setFilteredSalaryReports(null);
       }
     } catch (err) {
       console.log(err);
     }
     setIsFetching(false);
+    return {
+      error,
+    };
   };
 
   return (

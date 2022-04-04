@@ -78,21 +78,18 @@ const Salary = () => {
   useEffect(() => {
     async function sortReportsByAmount() {
       await sortByAmount(filterAmount);
-      return;
     }
     async function filterReportsByPaymentType() {
-      await filterByPaymentType(filterPaymentType);
-      if (filteredSalaryReports == null) {
-        toast.error("No matching results.");
+      const res = await filterByPaymentType(filterPaymentType);
+      if (res.error) {
+        toast.error(res.error);
       }
-      return;
     }
     async function filterReportsByDateRange() {
-      await filterByDate(filterFrom, filterTo);
-      if (filteredSalaryReports == null) {
-        toast.error("No matching results.");
+      const res = await filterByDate(filterFrom, filterTo);
+      if (res.error) {
+        toast.error(res.error);
       }
-      return;
     }
 
     if (filterAmount) {
