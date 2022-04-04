@@ -156,7 +156,7 @@ const Salary = () => {
       Amount: report.amount,
       "Payed on": report.createdAt.toDate().toLocaleDateString(),
     }));
-    csvDownload(report);
+    csvDownload(report, "Salary Report");
   };
 
   if (isFetching || isLoading) return <Spinner />;

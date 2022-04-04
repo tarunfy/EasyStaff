@@ -98,7 +98,7 @@ const Visit = () => {
       Description: visit.description,
       "Visited on": moment(visit.createdAt).format("MM/DD/YYYY"),
     }));
-    csvDownload(list);
+    csvDownload(list, "Customer Report");
   };
 
   if (isFetching || isLoading) return <Spinner />;
@@ -107,18 +107,18 @@ const Visit = () => {
     <>
       <Sidebar />
       <div className="h-screen pl-64 w-full py-7 pr-7 bg-slate-50 flex justify-start flex-col overflow-y-scroll">
-        <div className="flex items-center mb-10 justify-end w-full space-x-2">
-          <button
-            onClick={handleDownload}
-            className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
-          >
-            <FileDownloadIcon /> Download
-          </button>
+        <div className="flex items-center mb-10 justify-between w-full ">
           <button
             onClick={openAddVisitModal}
             className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
           >
             Add Visit
+          </button>
+          <button
+            onClick={handleDownload}
+            className="font-semibold hover:bg-quadtiary-500  hover:text-white hover:shadow-primary-1100 hover:scale-105 duration-300 ease-in-out hover:shadow-2xl transition-all  text-xl border-2 border-quadtiary-500 text-quadtiary-500 px-6 py-2"
+          >
+            <FileDownloadIcon /> Download
           </button>
         </div>
         <div className="flex justify-center">
