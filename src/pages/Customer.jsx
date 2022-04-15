@@ -3,7 +3,6 @@ import { Sidebar, Spinner, CustomerCard } from "../components";
 import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
 import { Box, Modal } from "@mui/material";
-import notfound from "../assets/images/404.svg";
 
 const Customer = () => {
   const [addCustomerModal, setAddCustomerModal] = useState(false);
@@ -107,8 +106,7 @@ const Customer = () => {
         </div>
         {customerList && customerList.length < 1 && (
           <div className="flex justify-center items-center flex-col">
-            <img src={notfound} alt="No staff found" className="h-128 w-128" />
-            <h1 className="font-bold text-2xl">No customer found</h1>
+            <h1 className="font-bold text-3xl">No customer found</h1>
           </div>
         )}
       </div>
