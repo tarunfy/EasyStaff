@@ -4,7 +4,6 @@ import { BusinessContext } from "../contexts/BusinessContext";
 import { AuthContext } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { Box, Modal } from "@mui/material";
-import notfound from "../assets/images/404.svg";
 
 const Staff = () => {
   const [addStaffModal, setAddStaffModal] = useState(false);
@@ -131,8 +130,7 @@ const Staff = () => {
         </div>
         {staffList && staffList.length < 1 && (
           <div className="flex justify-center items-center flex-col">
-            <img src={notfound} alt="No staff found" className="h-128 w-128" />
-            <h1 className="font-bold text-2xl">No staff found</h1>
+            <h1 className="font-bold text-3xl">No staff found</h1>
           </div>
         )}
       </div>
