@@ -38,7 +38,7 @@ const Details = () => {
     e.preventDefault();
     await createBusiness(currentUser.uid, details);
     resetForm();
-    history.push("/dashboard");
+    history.push("/staff");
   };
 
   const resetForm = () => {
